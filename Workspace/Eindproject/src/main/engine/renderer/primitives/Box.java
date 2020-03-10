@@ -1,5 +1,5 @@
-package engine.renderer.primitives;
-import engine.math.Vector3;
+package main.engine.renderer.primitives;
+import main.engine.math.Vector3;
 
 public class Box {
 	Vector3 pos;

@@ -1,4 +1,4 @@
-package engine.math;
+package main.engine.math;
 
 public class Vector3 {
 	public float x, y, z;
