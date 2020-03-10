@@ -1,5 +1,7 @@
 package main.engine.io;
 
+import org.lwjgl.glfw.GLFW;
+
 public class Window {
 	int width, height;
 	String name;
@@ -10,6 +12,8 @@ public class Window {
 	}
 	
 	public void create() {
-
+		if(!GLFW.glfwInit()) {
+			System.err.println("Can't initialize GLFW!");
+		}
 	}
 }
