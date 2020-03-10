@@ -1,11 +1,16 @@
 package engine.renderer.primitives;
+import engine.math.Vector3;
 
 public class Box {
+	Vector3 pos;
+	Vector3 size;
 	
-	Box(float x, float y, float z, float w, float h){
-		
+	Box(Vector3 pos, Vector3 size){
+		this.pos = pos;
+		this.size = size;
 	}
-	Box(float a,float len){
-		
+	Box(Vector3 pos ,float len){
+		this.pos = pos;
+		this.size = new Vector3(len,len,len);
 	}
 }
