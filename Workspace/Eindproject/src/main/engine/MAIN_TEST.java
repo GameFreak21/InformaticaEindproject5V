@@ -6,12 +6,12 @@ import main.engine.math.Vector3;
 import main.engine.renderer.graphics.Mesh;
 import main.engine.renderer.graphics.Vertex;
 import main.engine.renderer.graphics.Renderer;
-import main.engine.renderer.primitives.Box;
+import main.engine.renderer.graphics.Shader;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
-	static Renderer renderer = new Renderer();
-	static Box box = new Box(new Vector3(0, 0, 0), 10, window);
+	static Renderer renderer;
+	static Shader shader;
 	
 	static Mesh mesh = new Mesh(new Vertex[] {
 			new Vertex(new Vector3(-0.5f,0.5f, 0.0f)),
@@ -29,6 +29,9 @@ public class MAIN_TEST {
 	public static void main(String[] args) {
 		window.create();
 		mesh.create();
+		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
+		renderer = new Renderer(shader);
+		shader.create();
 		
 		while(!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
