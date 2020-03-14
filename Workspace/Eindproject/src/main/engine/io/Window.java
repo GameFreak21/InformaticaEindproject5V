@@ -20,7 +20,7 @@ public class Window {
 		this.name = name;
 		this.width = width;
 		this.height = height;
-		this.bgColor = new Vector3(1.0f, 0.0f, 0.0f);
+		this.bgColor = new Vector3(0.4f, 0.4f, 0.4f);
 	}
 	
 	public void create() { //function for creating window

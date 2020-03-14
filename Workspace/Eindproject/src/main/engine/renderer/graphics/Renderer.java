@@ -11,6 +11,7 @@ public class Renderer {
 	public void renderMesh(Mesh mesh) {
 		GL31.glBindVertexArray(mesh.vertexArrayObject);
 		GL31.glEnableVertexAttribArray(0);
+		GL31.glEnableVertexAttribArray(1); //enable location for shader
 		
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, mesh.indicesBufferObject);
 		shader.bind();
@@ -19,6 +20,7 @@ public class Renderer {
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, 0);
 		
 		GL31.glDisableVertexAttribArray(0); //disable and unbind
+		GL31.glDisableVertexAttribArray(1);
 		GL31.glBindVertexArray(0);
 	}
 }
