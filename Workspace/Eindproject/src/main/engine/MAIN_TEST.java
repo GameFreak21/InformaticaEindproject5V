@@ -14,7 +14,7 @@ public class MAIN_TEST {
 	static Shader shader;
 	
 	static Mesh mesh = new Mesh(new Vertex[] {
-			new Vertex(new Vector3(-0.5f,0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
+			new Vertex(new Vector3(-0.5f,0.5f, 0.0f), new Vector3(0.0f,1.0f,0.0f)),
 			new Vertex(new Vector3( 0.5f,0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
 			new Vertex(new Vector3( 0.5f,-0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
 			new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,0.0f,.0f))

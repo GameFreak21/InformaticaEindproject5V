@@ -20,7 +20,7 @@ public class Window {
 		this.name = name;
 		this.width = width;
 		this.height = height;
-		this.bgColor = new Vector3(0.4f, 0.4f, 0.4f);
+		this.bgColor = new Vector3(1.0f, 0.4f, 0.4f);
 	}
 	
 	public void create() { //function for creating window
@@ -41,6 +41,9 @@ public class Window {
 		
 		GLFW.glfwMakeContextCurrent(window); //make the current used window
 		GL.createCapabilities();
+		
+		GL31.glEnable(GL31.GL_BLEND);//enable alfa
+		GL31.glBlendFunc(GL31.GL_SRC_ALPHA, GL31.GL_ONE_MINUS_SRC_ALPHA);
 		
 		GLFW.glfwShowWindow(window); //show the window
 		
