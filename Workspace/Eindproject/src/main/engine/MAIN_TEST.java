@@ -14,10 +14,10 @@ public class MAIN_TEST {
 	static Shader shader;
 	
 	static Mesh mesh = new Mesh(new Vertex[] {
-			new Vertex(new Vector3(-0.5f,0.5f, 0.0f), new Vector3(1.0f,0.0f,0.0f)),
-			new Vertex(new Vector3( 0.5f,0.5f, 0.0f), new Vector3(0.0f,1.0f,0.0f)),
-			new Vertex(new Vector3( 0.5f,-0.5f, 0.0f), new Vector3(0.0f,0.0f,1.0f)),
-			new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(1.0f,1.0f,.0f))
+			new Vertex(new Vector3(-0.5f,0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
+			new Vertex(new Vector3( 0.5f,0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
+			new Vertex(new Vector3( 0.5f,-0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
+			new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,0.0f,.0f))
 	}, new int[] {
 			0, 1, 2,  //triangles for rendering , top left, top rigt, bot right
 			0, 3, 2
@@ -43,7 +43,7 @@ public class MAIN_TEST {
 				frames = 0;
 			}
 			
-			renderer.renderMesh(mesh);
+			renderer.renderMesh(mesh); 
 			window.swapBuffers();
 		}
 		mesh.destroy();
