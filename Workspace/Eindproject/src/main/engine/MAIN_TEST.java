@@ -1,7 +1,10 @@
 package main.engine;
+import java.util.Arrays;
+
 import org.lwjgl.glfw.GLFW;
 
 import main.engine.io.Window;
+import main.engine.math.Matrix;
 import main.engine.math.Vector3;
 import main.engine.renderer.graphics.Mesh;
 import main.engine.renderer.graphics.Vertex;
@@ -12,6 +15,15 @@ public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
 	static Renderer renderer;
 	static Shader shader;
+	static float [][] no1 = {
+			{1, 2}, 
+			{3, 4}
+	};
+	static float [][] no2 = {
+			{5,6},
+			{7,8}
+	};
+	static Matrix matrix = new Matrix();
 	
 	static Mesh mesh = new Mesh(new Vertex[] {
 			new Vertex(new Vector3(-0.5f,0.5f, 0.0f), new Vector3(0.0f,1.0f,0.0f)),
@@ -32,6 +44,7 @@ public class MAIN_TEST {
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(shader);
 		shader.create();
+		float [][] mul = matrix.matmul(no1, no2);
 		
 		while(!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
@@ -48,5 +61,6 @@ public class MAIN_TEST {
 		}
 		mesh.destroy();
 		shader.destroy();
+		System.out.println(Arrays.deepToString(mul));
 	}
 }
