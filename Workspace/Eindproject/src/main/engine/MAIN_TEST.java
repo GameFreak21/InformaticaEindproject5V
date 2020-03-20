@@ -19,7 +19,7 @@ public class MAIN_TEST {
 			new Vertex(new Vector3( 0.5f,-0.5f, 0.0f), new Vector3(0.0f,0.0f,0.0f)),
 			new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,0.0f,.0f))
 	}, new int[] {
-			0, 1, 2,  //triangles for rendering , top left, top rigt, bot right
+			0, 1, 2,  //triangles for rendering , top left, top right, bot right
 			0, 3, 2
 	});
 	
