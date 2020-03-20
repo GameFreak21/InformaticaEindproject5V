@@ -47,7 +47,7 @@ public class Window {
 		
 		GLFW.glfwShowWindow(window); //show the window
 		
-		//GLFW.glfwSwapInterval(0); //remove comment for v-sync off
+		GLFW.glfwSwapInterval(0); //remove comment for v-sync off
 		
 	}
 	
