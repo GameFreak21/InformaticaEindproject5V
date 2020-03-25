@@ -5,13 +5,9 @@ import org.lwjgl.glfw.GLFW;
 import main.engine.io.Window;
 import main.engine.math.Matrix;
 import main.engine.math.Vector3;
-import main.engine.objects.GameObject;
-import main.engine.renderer.graphics.Mesh;
-import main.engine.renderer.graphics.Vertex;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.Box;
-import main.engine.renderer.primitives.Pyramid;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
@@ -19,8 +15,8 @@ public class MAIN_TEST {
 	static Shader shader;
 
 	static Matrix matrix = new Matrix();
-
-	static Box box = new Box(new Vector3(), new Vector3(), new Vector3());
+	
+	static Box box = new Box(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 //	static Pyramid box = new Pyramid(new Vector3(0.0f, 1.0f, 1.0f), 1.0f, new Vector3());
 
 	static int frames;
@@ -28,7 +24,7 @@ public class MAIN_TEST {
 
 	public static void main(String[] args) {
 		window.create();
-		box.object.mesh.create();
+		box.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(shader);
 		shader.create();
@@ -42,12 +38,12 @@ public class MAIN_TEST {
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
-			box.object.update();
+			box.gameObject.update();
 
-			renderer.renderMesh(box.object);
+			renderer.renderMesh(box.gameObject);
 			window.swapBuffers();
 		}
-		box.object.mesh.destroy();
+		box.gameObject.mesh.destroy();
 		shader.destroy();
 	}
 }
