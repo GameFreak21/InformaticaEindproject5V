@@ -11,6 +11,7 @@ import main.engine.renderer.graphics.Vertex;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.Box;
+import main.engine.renderer.primitives.Pyramid;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
@@ -19,7 +20,8 @@ public class MAIN_TEST {
 
 	static Matrix matrix = new Matrix();
 
-	static Box box = new Box(new Vector3(0.0f, 1.0f, 1.0f), 1.0f, new Vector3());
+	static Box box = new Box(new Vector3(), new Vector3(), new Vector3());
+//	static Pyramid box = new Pyramid(new Vector3(0.0f, 1.0f, 1.0f), 1.0f, new Vector3());
 
 	static int frames;
 	static long time = System.currentTimeMillis();

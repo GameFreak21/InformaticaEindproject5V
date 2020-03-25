@@ -48,7 +48,19 @@ public class Box {
 					new Vertex(new Vector3(-0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
 					new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
 					new Vertex(new Vector3(-0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
-					new Vertex(new Vector3(-0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f))
+					new Vertex(new Vector3(-0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f))	//,
+					
+					//bottom
+//					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+//					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+//					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+//					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
+//					
+//					//top
+//					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+//					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+//					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+//					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f))
 				},
 			new int[] { 
 					//front
@@ -65,7 +77,15 @@ public class Box {
 					
 					//left
 					12, 13, 14,
-					14, 15, 13
+					14, 15, 13	//,
+					
+					//bottom
+//					16, 17, 18,
+//					18, 19, 17,
+//					
+//					//top
+//					20, 21, 22,
+//					22, 23, 21
 				});
 	public GameObject object = new GameObject(pos, rot, scale, mesh);
 
