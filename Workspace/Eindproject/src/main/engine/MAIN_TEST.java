@@ -10,6 +10,7 @@ import main.engine.renderer.graphics.Mesh;
 import main.engine.renderer.graphics.Vertex;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
+import main.engine.renderer.primitives.Box;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
@@ -18,58 +19,14 @@ public class MAIN_TEST {
 
 	static Matrix matrix = new Matrix();
 
-	static Mesh mesh = new Mesh(
-			new Vertex[] { 
-					//front
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 0.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector3(0.5f, 0.0f, 0.5f)),
-					
-					//right
-					new Vertex(new Vector3(0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
-					new Vertex(new Vector3(0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
-					new Vertex(new Vector3(0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
-					new Vertex(new Vector3(0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f)),
-					
-					//back
-					new Vertex(new Vector3(-0.5f, 0.5f, 1.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 1.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 1.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 1.0f), new Vector3(0.5f, 0.0f, 0.5f)),
-					
-					//left
-					new Vertex(new Vector3(-0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
-					new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
-					new Vertex(new Vector3(-0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
-					new Vertex(new Vector3(-0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f))
-				},
-			new int[] { 
-					//front
-					0, 1, 2, // triangles for rendering , top left, top right, bot right
-					0, 3, 2,
-					
-					//right
-					4, 5, 6,
-					6, 7, 5,
-					
-					//back
-					8, 9, 10,
-					8, 11, 10,
-					
-					//left
-					12, 13, 14,
-					14, 15, 13
-				});
+	static Box box = new Box(new Vector3(0.0f, 1.0f, 1.0f), 1.0f, new Vector3());
 
 	static int frames;
 	static long time = System.currentTimeMillis();
 
-	static GameObject object = new GameObject(new Vector3(), new Vector3(), new Vector3(1, 1, 1), mesh);
-
 	public static void main(String[] args) {
 		window.create();
-		object.mesh.create();
+		box.object.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(shader);
 		shader.create();
@@ -83,12 +40,12 @@ public class MAIN_TEST {
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
-			object.update();
+			box.object.update();
 
-			renderer.renderMesh(object);
+			renderer.renderMesh(box.object);
 			window.swapBuffers();
 		}
-		object.mesh.destroy();
+		box.object.mesh.destroy();
 		shader.destroy();
 	}
 }
