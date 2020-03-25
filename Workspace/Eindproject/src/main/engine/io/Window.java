@@ -48,7 +48,9 @@ public class Window {
 
 		GL31.glEnable(GL31.GL_BLEND);// enable alfa
 		GL31.glBlendFunc(GL31.GL_SRC_ALPHA, GL31.GL_ONE_MINUS_SRC_ALPHA);
-
+		
+		GL31.glEnable(GL31.GL_DEPTH_TEST);
+		
 		createCallbacks();
 
 		GLFW.glfwShowWindow(window); // show the window
@@ -78,7 +80,7 @@ public class Window {
 		}
 
 		GL31.glClearColor(bgColor.x, bgColor.y, bgColor.z, 1.0f);
-		GL31.glClear(GL31.GL_COLOR_BUFFER_BIT);
+		GL31.glClear(GL31.GL_COLOR_BUFFER_BIT | GL31.GL_DEPTH_BUFFER_BIT);
 
 		GLFW.glfwPollEvents();
 	}

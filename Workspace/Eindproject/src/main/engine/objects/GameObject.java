@@ -20,9 +20,9 @@ public class GameObject {
 	// temp voor test
 	public void update() {
 		time = GLFW.glfwGetTime();
-		position.x = (float) Math.sin(time);
-		rotation = new Vector3((float) Math.sin(time) * 360, (float) Math.sin(time) * 360, (float) Math.sin(time) * 360);
-		scale = new Vector3((float) Math.sin(time), (float) Math.sin(time), (float) Math.sin(time));
+		//position.x = (float) Math.sin(time)/2.0f;
+		rotation = new Vector3(0, (float) time * 60, (float) time * 20);
+		//scale = new Vector3((float) Math.sin(time), (float) Math.sin(time), (float) Math.sin(time));
 	}
 	
 }

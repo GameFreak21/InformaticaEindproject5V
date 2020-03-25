@@ -19,12 +19,48 @@ public class MAIN_TEST {
 	static Matrix matrix = new Matrix();
 
 	static Mesh mesh = new Mesh(
-			new Vertex[] { new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
+			new Vertex[] { 
+					//front
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
 					new Vertex(new Vector3(0.5f, 0.5f, 0.0f), new Vector3(0.0f, 1.0f, 0.0f)),
 					new Vertex(new Vector3(0.5f, -0.5f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector3(0.5f, 0.0f, 0.5f)) },
-			new int[] { 0, 1, 2, // triangles for rendering , top left, top right, bot right
-					0, 3, 2 });
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector3(0.5f, 0.0f, 0.5f)),
+					
+					//right
+					new Vertex(new Vector3(0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
+					new Vertex(new Vector3(0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
+					new Vertex(new Vector3(0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
+					new Vertex(new Vector3(0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f)),
+					
+					//back
+					new Vertex(new Vector3(-0.5f, 0.5f, 1.0f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, 0.5f, 1.0f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, 1.0f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, 1.0f), new Vector3(0.5f, 0.0f, 0.5f)),
+					
+					//left
+					new Vertex(new Vector3(-0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
+					new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
+					new Vertex(new Vector3(-0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
+					new Vertex(new Vector3(-0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f))
+				},
+			new int[] { 
+					//front
+					0, 1, 2, // triangles for rendering , top left, top right, bot right
+					0, 3, 2,
+					
+					//right
+					4, 5, 6,
+					6, 7, 5,
+					
+					//back
+					8, 9, 10,
+					8, 11, 10,
+					
+					//left
+					12, 13, 14,
+					14, 15, 13
+				});
 
 	static int frames;
 	static long time = System.currentTimeMillis();

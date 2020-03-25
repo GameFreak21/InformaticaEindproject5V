@@ -1,7 +1,5 @@
 package main.engine.math;
 
-import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
-
 public class Matrix {
 	float[][] matrix;
 
@@ -78,6 +76,15 @@ public class Matrix {
 
 		return outMatrix;
 	}
+	
+	public static float[][] projection(){
+		return null;
+	}
+	
+	public static float[][] view(){
+		return null;
+	}
+	
 	
 	public static float[] toFloatArr(float[][] matrix) {
 		float[] newMat = new float[matrix.length * matrix[0].length];
