@@ -9,17 +9,8 @@ public class Wedge {
 	Vector3 pos;
 	Vector3 rot;
 	Vector3 scale;
+	public GameObject gameObject;
 	
-	public Wedge(Vector3 pos, Vector3 size, Vector3 rot) {
-		this.pos = pos;
-		this.scale = size;
-		this.rot = rot;
-	}
-	public Wedge(Vector3 pos, float len, Vector3 rot) {
-		this.pos = pos;
-		this.scale = new Vector3(len, len, len);
-		this.rot = rot;
-	}
 	Mesh mesh = new Mesh(
 		new Vertex[] {
 				//wide
@@ -50,5 +41,17 @@ public class Wedge {
 				2, 4, 5,
 				2, 3, 5
 		});
-	public GameObject object = new GameObject(pos, rot, scale, mesh);
+	
+	public Wedge(Vector3 pos, Vector3 rot, Vector3 size) {
+		this.pos = pos;
+		this.scale = size;
+		this.rot = rot;
+		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	}
+	public Wedge(Vector3 pos, float len, Vector3 rot) {
+		this.pos = pos;
+		this.scale = new Vector3(len, len, len);
+		this.rot = rot;
+		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	}
 }

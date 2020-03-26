@@ -10,17 +10,8 @@ public class Pyramid {
 	Vector3 rot;
 	Vector3 scale;
 	
-	public Pyramid(Vector3 pos, Vector3 size, Vector3 rot) {
-		this.pos = pos;
-		this.scale = size;
-		this.rot = rot;
-	}
+	public GameObject gameObject;
 	
-	public Pyramid(Vector3 pos, float len, Vector3 rot) {
-			this.pos = pos;
-			this.scale = new Vector3(len, len, len);
-			this.rot = rot;
-	}
 	Mesh mesh = new Mesh(
 			new Vertex[] {
 					//bottom
@@ -37,7 +28,22 @@ public class Pyramid {
 				0, 1, 4,
 				0, 2, 4,
 				1, 3, 4,
-				2, 3, 4
+				2, 3, 4,
+				0, 1, 2,
+				2, 3, 1
 		});
-	public GameObject object = new GameObject(pos, rot, scale, mesh);
+		
+	public Pyramid(Vector3 pos, Vector3 rot, Vector3 size) {
+		this.pos = pos;
+		this.scale = size;
+		this.rot = rot;
+		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	}
+	
+	public Pyramid(Vector3 pos, float len, Vector3 rot) {
+			this.pos = pos;
+			this.scale = new Vector3(len, len, len);
+			this.rot = rot;
+			this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	}
 }
