@@ -14,40 +14,40 @@ public class Box {
 	Mesh mesh = new Mesh(
 			new Vertex[] { 
 					//front
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 0.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector3(0.5f, 0.0f, 0.5f)),
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
 					
 					//right
-					new Vertex(new Vector3(0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
-					new Vertex(new Vector3(0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
-					new Vertex(new Vector3(0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
-					new Vertex(new Vector3(0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f)),
+					new Vertex(new Vector3(0.5f,0.5f,-0.5f), new Vector3(1.0f,0.0f,0.0f)),
+					new Vertex(new Vector3(0.5f,-0.5f,-0.5f), new Vector3(0.0f,1.0f,0.0f)),
+					new Vertex(new Vector3(0.5f,0.5f,0.5f), new Vector3(0.0f,0.0f,1.0f)),
+					new Vertex(new Vector3(0.5f,-0.5f,0.5f), new Vector3(0.5f,0.0f,0.5f)),
 					
 					//back
-					new Vertex(new Vector3(-0.5f, 0.5f, 1.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 1.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 1.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 1.0f), new Vector3(0.5f, 0.0f, 0.5f)),
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
 					
 					//left
-					new Vertex(new Vector3(-0.5f,0.5f,0.0f), new Vector3(1.0f,0.0f,0.0f)),
-					new Vertex(new Vector3(-0.5f,-0.5f,0.0f), new Vector3(0.0f,1.0f,0.0f)),
-					new Vertex(new Vector3(-0.5f,0.5f,1.0f), new Vector3(0.0f,0.0f,1.0f)),
-					new Vertex(new Vector3(-0.5f,-0.5f,1.0f), new Vector3(0.5f,0.0f,0.5f)),
+					new Vertex(new Vector3(-0.5f,0.5f,-0.5f), new Vector3(1.0f,0.0f,0.0f)),
+					new Vertex(new Vector3(-0.5f,-0.5f,-0.5f), new Vector3(0.0f,1.0f,0.0f)),
+					new Vertex(new Vector3(-0.5f,0.5f,0.5f), new Vector3(0.0f,0.0f,1.0f)),
+					new Vertex(new Vector3(-0.5f,-0.5f,0.5f), new Vector3(0.5f,0.0f,0.5f)),
 					
 					//bottom
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 1.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(0.5f, -0.5f, 1.0f), new Vector3(0.5f, 0.0f, 0.5f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
 					
 					//top
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(-0.5f, 0.5f, 1.0f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(0.5f, 0.5f, 1.0f), new Vector3(0.5f, 0.0f, 0.5f))
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f))
 				},
 			new int[] { 
 					//front

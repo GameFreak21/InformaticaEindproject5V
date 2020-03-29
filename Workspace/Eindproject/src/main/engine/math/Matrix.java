@@ -77,12 +77,31 @@ public class Matrix {
 		return outMatrix;
 	}
 	
-	public static float[][] projection(){
-		return null;
+	public static float[][] projection(float aspect, float fov , float near, float far){
+		float FOV = (float) Math.tan(Math.toRadians(fov/2));
+		float range = far - near;
+		
+		float[][] outMatrix = {
+				{ 1.0f / (aspect * FOV), 0, 0, 0 },
+				{ 0, 1.0f / FOV, 0, 0 },
+				{ 0, 0, -((far + near) / range), -((2*far*near) / range) }, 
+				{ 0, 0, -1, 0 }
+		};
+		return outMatrix;
 	}
 	
-	public static float[][] view(){
-		return null;
+	public static float[][] view(Vector3 position, Vector3 rotation){
+		
+		Vector3 negative = new Vector3(-position.x, -position.y, -position.z);
+		
+		float[][] translationMat = Matrix.translate(negative);
+		float[][] rotxMat = Matrix.rotate(new Vector3(1, 0, 0), rotation.x);
+		float[][] rotyMat = Matrix.rotate(new Vector3(0, 1, 0), rotation.y);
+		float[][] rotzMat = Matrix.rotate(new Vector3(0, 0, 1), rotation.z);
+		
+		float[][] outMatrix = Matrix.matmul(translationMat, Matrix.matmul(rotzMat, Matrix.matmul(rotyMat, rotxMat)));
+
+		return outMatrix;
 	}
 	
 	

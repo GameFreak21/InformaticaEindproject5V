@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL31;
 
+import main.engine.math.Matrix;
 import main.engine.math.Vector3;
 
 public class Window {
@@ -13,17 +14,23 @@ public class Window {
 	// variables
 	public long window;
 	public int width, height;
+	public float[][] projectionMat;
 	String name;
 
 	private GLFWWindowSizeCallback sizeCallback;
 	private boolean resized = false;
 	private Vector3 bgColor;
-
+	
+	private float fov = 70.0f;
+	private float near = 0.1f;
+	private float far = 1000.0f;
+	
 	public Window(String name, int width, int height) { // window function for class
 		this.name = name;
 		this.width = width;
 		this.height = height;
 		this.bgColor = new Vector3(1.0f, 0.4f, 0.4f);
+		projectionMat = Matrix.projection((float) width / (float) height, fov, near, far);
 	}
 
 	public void create() { // function for creating window
@@ -76,6 +83,7 @@ public class Window {
 	public void update() { // update window
 		if (resized) {
 			GL31.glViewport(0, 0, width, height);
+			projectionMat = Matrix.projection((float) width / (float) height, fov, near, far);
 			resized = false;
 		}
 

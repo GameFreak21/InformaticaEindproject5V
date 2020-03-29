@@ -7,8 +7,10 @@ out vec4 passColor;
 
 uniform vec4 ourColor;
 uniform mat4 model;
+uniform mat4 projection;
+uniform mat4 view;
 
 void main(){
-	gl_Position = vec4(position, 1.0) * model;
+	gl_Position =  model * view * projection * vec4(position, 1.0);
 	passColor = ourColor * vec4(color, 1.0f);
 }
