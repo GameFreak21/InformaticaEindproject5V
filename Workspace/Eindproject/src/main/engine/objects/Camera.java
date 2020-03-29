@@ -10,7 +10,4 @@ public class Camera {
 		this.rotation = rotation;
 	}
 	
-	public void update() {
-		
-	}
 }
