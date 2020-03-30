@@ -20,14 +20,14 @@ public class Wedge {
 				new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
 				
 				//small
-				new Vertex(new Vector3(0.5f, 0.0f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
-				new Vertex(new Vector3(0.5f, 0.0f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f))
+				new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+				new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f))
 				
 		},
 		new int[] {
 				//wide
 				0, 1, 2,
-				0, 2, 3,
+				1, 2, 3,
 				
 				//wide-to-small-sides
 				0, 4, 2,

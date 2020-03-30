@@ -24,7 +24,7 @@ public class Renderer {
 		GL31.glEnableVertexAttribArray(1); // enable location for shader
 
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, object.mesh.indicesBufferObject);
-		// GL31.glPolygonMode(GL31.GL_FRONT_AND_BACK, GL31.GL_LINE); //turn on wireframe
+		//GL31.glPolygonMode(GL31.GL_FRONT_AND_BACK, GL31.GL_LINE); //turn on wireframe
 		shader.bind();
 		float timeVal = (float) GLFW.glfwGetTime();
 		Vector4 colorVal = new Vector4((float) (Math.sin(timeVal) / 2.0f) + 0.8f,

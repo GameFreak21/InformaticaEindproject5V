@@ -18,9 +18,9 @@ public class MAIN_TEST {
 
 	static Matrix matrix = new Matrix();
 	
-	static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
+//	static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
 	//static Pyramid box = new Pyramid(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
-	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 
 	static Camera camera = new Camera(new Vector3(0,0,1), new Vector3());
 	
@@ -43,7 +43,7 @@ public class MAIN_TEST {
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
-			//box.gameObject.update();
+			box.gameObject.update();
 
 			renderer.renderMesh(box.gameObject, camera);
 			window.swapBuffers();
