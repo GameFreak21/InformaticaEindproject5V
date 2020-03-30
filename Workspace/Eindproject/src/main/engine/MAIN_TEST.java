@@ -19,8 +19,8 @@ public class MAIN_TEST {
 	static Matrix matrix = new Matrix();
 	
 	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
-	//static Pyramid box = new Pyramid(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
-	static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	static Pyramid box = new Pyramid(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	static Wedge wedge = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 
 	static Camera camera = new Camera(new Vector3(0,0,1), new Vector3());
 	
@@ -30,6 +30,7 @@ public class MAIN_TEST {
 	public static void main(String[] args) {
 		window.create();
 		box.gameObject.mesh.create();
+		wedge.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -44,11 +45,15 @@ public class MAIN_TEST {
 				frames = 0;
 			}
 			box.gameObject.update();
+			wedge.gameObject.update();
 
 			renderer.renderMesh(box.gameObject, camera);
+			renderer.renderMesh(wedge.gameObject, camera);
 			window.swapBuffers();
 		}
 		box.gameObject.mesh.destroy();
+		wedge.gameObject.mesh.destroy();
 		shader.destroy();
+		window.kill();
 	}
 }

@@ -39,6 +39,8 @@ public class GameObject {
 		if(Input.keyDown(GLFW.GLFW_KEY_S)) {
 			scale = new Vector3(scale.x + 0.5f/60f, scale.y + 0.5f/60f, scale.z + 0.5f/60f);
 		}
+		position.y = 0.1f*(float)Input.scrollY;
+		position.x = 0.1f*(float)Input.scrollX;
 		
 		//position.x = (float) Math.sin(time)/2.0f;
 		//rotation = new Vector3(0, (float) time * 60, (float) time * 20);
