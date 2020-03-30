@@ -90,7 +90,7 @@ public class Shader {
 		int location = GL31.glGetUniformLocation(programID, name);
 		FloatBuffer matrixBuffer = MemoryUtil.memAllocFloat(value.length * value[0].length);
 		matrixBuffer.put(Matrix.toFloatArr(value)).flip();
-		GL31.glUniformMatrix4fv(location, false, matrixBuffer);
+		GL31.glUniformMatrix4fv(location, true, matrixBuffer);
 	}
 	
 	public void bind() {

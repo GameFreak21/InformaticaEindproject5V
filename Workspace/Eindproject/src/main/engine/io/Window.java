@@ -17,6 +17,7 @@ public class Window {
 	public float[][] projectionMat;
 	String name;
 
+	private Input input;
 	private GLFWWindowSizeCallback sizeCallback;
 	private boolean resized = false;
 	private Vector3 bgColor;
@@ -38,7 +39,9 @@ public class Window {
 			System.err.println("Can't initialize GLFW!");
 			return;
 		}
-
+		
+		input = new Input();
+		
 		GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_TRUE); // make window resizable
 		window = GLFW.glfwCreateWindow(width, height, name, 0, 0); // create the window
 		if (window == 0) { // error handling
@@ -68,15 +71,19 @@ public class Window {
 
 	private void createCallbacks() {
 		sizeCallback = new GLFWWindowSizeCallback() {
-
-			@Override
 			public void invoke(long window, int w, int h) {
 				width = w;
 				height = h;
 				resized = true;
 			}
 		};
-
+		//input callbacks
+		GLFW.glfwSetKeyCallback(window, input.keyboardCallback);
+		GLFW.glfwSetMouseButtonCallback(window, input.mouseButtonCallback);
+		GLFW.glfwSetCursorPosCallback(window, input.mousePosCallback);
+		GLFW.glfwSetScrollCallback(window, input.mouseScrollCallback);
+		
+		//size callback
 		GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
 	}
 
