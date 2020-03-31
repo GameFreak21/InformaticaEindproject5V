@@ -2,7 +2,6 @@ package main.engine.objects;
 
 import org.lwjgl.glfw.GLFW;
 
-import main.engine.io.Input;
 import main.engine.math.Vector3;
 import main.engine.renderer.graphics.Mesh;
 
