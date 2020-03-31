@@ -23,7 +23,7 @@ public class Window {
 	private Vector3 bgColor;
 	
 	private float fov = 70.0f;
-	private float near = 0.1f;
+	private float near = 0.01f;
 	private float far = 1000.0f;
 	
 	public Window(String name, int width, int height) { // window function for class
@@ -99,7 +99,11 @@ public class Window {
 
 		GLFW.glfwPollEvents();
 	}
-
+	
+	public void lockCursor(boolean cursorLock) {
+		GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, cursorLock ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
+	}
+	
 	public void swapBuffers() { // swap buffers
 		GLFW.glfwSwapBuffers(window);
 	}

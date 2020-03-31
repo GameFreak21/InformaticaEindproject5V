@@ -99,7 +99,7 @@ public class Matrix {
 		float[][] rotyMat = Matrix.rotate(new Vector3(0, 1, 0), rotation.y);
 		float[][] rotzMat = Matrix.rotate(new Vector3(0, 0, 1), rotation.z);
 		
-		float[][] outMatrix = Matrix.matmul(translationMat, Matrix.matmul(rotzMat, Matrix.matmul(rotyMat, rotxMat)));
+		float[][] outMatrix = Matrix.matmul(Matrix.matmul(rotxMat, Matrix.matmul(rotyMat, rotzMat)), translationMat);
 
 		return outMatrix;
 	}

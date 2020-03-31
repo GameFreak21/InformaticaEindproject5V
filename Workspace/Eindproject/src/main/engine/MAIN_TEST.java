@@ -2,6 +2,7 @@ package main.engine;
 
 import org.lwjgl.glfw.GLFW;
 
+import main.engine.io.Input;
 import main.engine.io.Window;
 import main.engine.math.Matrix;
 import main.engine.math.Vector3;
@@ -18,15 +19,15 @@ public class MAIN_TEST {
 
 	static Matrix matrix = new Matrix();
 	
-	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
+	static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
 	//static Pyramid box = new Pyramid(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
-	static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 
-	static Camera camera = new Camera(new Vector3(0,0,1), new Vector3());
+	static Camera camera = new Camera(new Vector3(0,0,2), new Vector3());
 	
 	static int frames;
 	static long time = System.currentTimeMillis();
-
+	
 	public static void main(String[] args) {
 		window.create();
 		box.gameObject.mesh.create();
@@ -43,8 +44,13 @@ public class MAIN_TEST {
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
+			
+			if(Input.keyDown(GLFW.GLFW_KEY_F11)) window.lockCursor(true);
+			if(Input.keyDown(GLFW.GLFW_KEY_F10)) window.lockCursor(false);
+			
+			camera.update();
 			box.gameObject.update();
-
+			
 			renderer.renderMesh(box.gameObject, camera);
 			window.swapBuffers();
 		}
