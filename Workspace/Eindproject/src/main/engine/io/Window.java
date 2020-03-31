@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL31;
 
 import main.engine.math.Matrix;
+import main.engine.math.Time;
 import main.engine.math.Vector3;
 
 public class Window {
@@ -26,6 +27,8 @@ public class Window {
 	private float near = 0.01f;
 	private float far = 1000.0f;
 	
+	private Time time;
+	
 	public Window(String name, int width, int height) { // window function for class
 		this.name = name;
 		this.width = width;
@@ -41,6 +44,7 @@ public class Window {
 		}
 		
 		input = new Input();
+		time = new Time();
 		
 		GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_TRUE); // make window resizable
 		window = GLFW.glfwCreateWindow(width, height, name, 0, 0); // create the window
@@ -65,7 +69,7 @@ public class Window {
 
 		GLFW.glfwShowWindow(window); // show the window
 
-		// GLFW.glfwSwapInterval(0); //remove comment for v-sync off
+		 GLFW.glfwSwapInterval(0); //remove comment for v-sync off
 
 	}
 
@@ -93,7 +97,9 @@ public class Window {
 			projectionMat = Matrix.projection((float) width / (float) height, fov, near, far);
 			resized = false;
 		}
-
+		
+		time.update();
+		
 		GL31.glClearColor(bgColor.x, bgColor.y, bgColor.z, 1.0f);
 		GL31.glClear(GL31.GL_COLOR_BUFFER_BIT | GL31.GL_DEPTH_BUFFER_BIT);
 

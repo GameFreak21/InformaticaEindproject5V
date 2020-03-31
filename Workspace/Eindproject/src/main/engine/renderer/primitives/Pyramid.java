@@ -15,10 +15,10 @@ public class Pyramid {
 	Mesh mesh = new Mesh(
 			new Vertex[] {
 					//bottom
-					new Vertex(new Vector3(-0.5f, 0.0f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
-					new Vertex(new Vector3(-0.5f, 0.0f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
-					new Vertex(new Vector3(0.5f, 0.0f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
-					new Vertex(new Vector3(0.5f, 0.0f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(1.0f, 0.0f, 0.0f)),
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(0.0f, 1.0f, 0.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.0f, 0.0f, 1.0f)),
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(0.5f, 0.0f, 0.5f)),
 					
 					//top
 					new Vertex(new Vector3(0.0f, 0.5f, 0.0f), new Vector3(1.0f, 0.0f, 0.0f))
