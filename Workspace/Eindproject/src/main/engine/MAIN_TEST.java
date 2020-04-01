@@ -66,7 +66,7 @@ public class MAIN_TEST {
 
 			frames++; // FPS
 			if (System.currentTimeMillis() > time + 1000) {
-				System.out.println(frames);
+				//System.out.println(frames);
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
