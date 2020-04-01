@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFW;
 import main.engine.io.Input;
 import main.engine.io.Window;
 import main.engine.math.Matrix;
+import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.renderer.graphics.Renderer;
@@ -42,9 +43,6 @@ public class MAIN_TEST {
 
 	static Camera camera = new Camera(new Vector3(0,0,2), new Vector3());
 	
-	static int frames;
-	static long time = System.currentTimeMillis();
-	
 	public static void main(String[] args) {
 		window.create();
 		for(int i = 0; i < boxs.length; i++) {
@@ -64,12 +62,7 @@ public class MAIN_TEST {
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
 
-			frames++; // FPS
-			if (System.currentTimeMillis() > time + 1000) {
-				//System.out.println(frames);
-				time = System.currentTimeMillis();
-				frames = 0;
-			}
+			System.out.println("FPS : " + (int)(1f/Time.deltaTime));
 			
 			if(Input.keyDown(GLFW.GLFW_KEY_F11)) window.lockCursor(true);
 			if(Input.keyDown(GLFW.GLFW_KEY_F10)) window.lockCursor(false);

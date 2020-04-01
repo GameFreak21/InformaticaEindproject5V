@@ -38,7 +38,6 @@ public class Camera {
 		else
 			rotation.x = -90f;
 		rotation = Vector3.add(rotation, new Vector3(0, dx * sensitivity, 0));
-		System.out.println(rotation.x);
 
 		float y = (float) (Math.sin(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
 		float sY = (float) (Math.cos(Math.toRadians(rotation.x)) * moveSpeed);
