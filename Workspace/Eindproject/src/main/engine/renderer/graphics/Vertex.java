@@ -9,4 +9,5 @@ public class Vertex {
 		this.position = position;
 		this.color = color;
 	}
+	
 }
