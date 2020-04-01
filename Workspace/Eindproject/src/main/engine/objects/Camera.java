@@ -29,13 +29,16 @@ public class Camera {
 		
 		rotation = Vector3.add(rotation, new Vector3(dy * sensitivity, dx * sensitivity, 0));
 		
-		float x = (float) (Math.cos(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
-		float z = (float) (Math.sin(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
+		float y = (float) (Math.sin(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
+		float sY =  (float) (Math.cos(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
+		
+		float x = (float) (Math.cos(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
+		float z = (float) (Math.sin(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
 		
 		if(Input.keyDown(GLFW.GLFW_KEY_A)) position = Vector3.add(position, new Vector3(-x,0,-z));
 		if(Input.keyDown(GLFW.GLFW_KEY_D)) position = Vector3.add(position, new Vector3(x,0,z));
-		if(Input.keyDown(GLFW.GLFW_KEY_S)) position = Vector3.add(position, new Vector3(-z, 0,x));
-		if(Input.keyDown(GLFW.GLFW_KEY_W)) position = Vector3.add(position, new Vector3(z, 0,-x));
+		if(Input.keyDown(GLFW.GLFW_KEY_S)) position = Vector3.add(position, new Vector3(-z, y,x));
+		if(Input.keyDown(GLFW.GLFW_KEY_W)) position = Vector3.add(position, new Vector3(z, -y,-x));
 		if(Input.keyDown(GLFW.GLFW_KEY_SPACE)) position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
 		if(Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) position = Vector3.add(position, new Vector3(0, (float) (-moveSpeed * Time.deltaTime), 0));
 	}
