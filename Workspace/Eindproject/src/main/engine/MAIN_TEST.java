@@ -2,6 +2,7 @@ package main.engine;
 
 import org.lwjgl.glfw.GLFW;
 
+import main.engine.io.Input;
 import main.engine.io.Window;
 import main.engine.math.Matrix;
 import main.engine.math.Vector3;
@@ -18,19 +19,44 @@ public class MAIN_TEST {
 
 	static Matrix matrix = new Matrix();
 	
+	static Box[] boxs = {
+			new Box(new Vector3(), new Vector3(), new Vector3(3,1,1)),
+			new Box(new Vector3(0,0,1), new Vector3(), new Vector3(1,1,1)),
+			new Box(new Vector3(-2,0.5f,0.5f), new Vector3(), new Vector3(1,2,2)),
+	};
+	static Wedge[] wedges = {
+			new Wedge(new Vector3(2,0,0), new Vector3(), new Vector3(1,1,1)),
+			new Wedge(new Vector3(1,0,2f), new Vector3(0,-90,0), new Vector3(1,1,3)),
+			new Wedge(new Vector3(-1,0,1.25f), new Vector3(0,-90,0), new Vector3(1,1,1.5f)),
+			new Wedge(new Vector3(0,0,2), new Vector3(0,-90,0), new Vector3(1,1,1)),
+			new Wedge(new Vector3(0,1,0), new Vector3(), new Vector3(3,1,1)),
+	};
+	static Pyramid[] pyramids = {
+			new Pyramid(new Vector3(0,1,1), new Vector3(), new Vector3(1,1,1)),
+			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
+	};
+	
 	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
-	static Pyramid box = new Pyramid(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
-	static Wedge wedge = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	//static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 
-	static Camera camera = new Camera(new Vector3(0,0,1), new Vector3());
+	static Camera camera = new Camera(new Vector3(0,0,2), new Vector3());
 	
 	static int frames;
 	static long time = System.currentTimeMillis();
-
+	
 	public static void main(String[] args) {
 		window.create();
-		box.gameObject.mesh.create();
-		wedge.gameObject.mesh.create();
+		for(int i = 0; i < boxs.length; i++) {
+			boxs[i].gameObject.mesh.create();
+		}
+		for(int i = 0; i < wedges.length; i++) {
+			wedges[i].gameObject.mesh.create();
+		}
+		for(int i = 0; i < pyramids.length; i++) {
+			pyramids[i].gameObject.mesh.create();
+		}
+		
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -44,15 +70,33 @@ public class MAIN_TEST {
 				time = System.currentTimeMillis();
 				frames = 0;
 			}
-			box.gameObject.update();
-			wedge.gameObject.update();
-
-			renderer.renderMesh(box.gameObject, camera);
-			renderer.renderMesh(wedge.gameObject, camera);
+			
+			if(Input.keyDown(GLFW.GLFW_KEY_F11)) window.lockCursor(true);
+			if(Input.keyDown(GLFW.GLFW_KEY_F10)) window.lockCursor(false);
+			
+			camera.update();
+			//box.gameObject.update();
+			for(int i = 0; i < boxs.length; i++) {
+				renderer.renderMesh(boxs[i].gameObject, camera);
+			}
+			for(int i = 0; i < wedges.length; i++) {
+				renderer.renderMesh(wedges[i].gameObject, camera);
+			}
+			for(int i = 0; i < pyramids.length; i++) {
+				renderer.renderMesh(pyramids[i].gameObject, camera);
+			}
+			
 			window.swapBuffers();
 		}
-		box.gameObject.mesh.destroy();
-		wedge.gameObject.mesh.destroy();
+		for(int i = 0; i < boxs.length; i++) {
+			boxs[i].gameObject.mesh.destroy();
+		}
+		for(int i = 0; i < wedges.length; i++) {
+			wedges[i].gameObject.mesh.destroy();
+		}
+		for(int i = 0; i < pyramids.length; i++) {
+			pyramids[i].gameObject.mesh.destroy();
+		}
 		shader.destroy();
 		window.kill();
 	}
