@@ -27,13 +27,14 @@ public class Camera {
 		boolean running = Input.keyDown(GLFW.GLFW_KEY_LEFT_CONTROL);
 		if(running) { moveSpeed = 2.5f; } else { moveSpeed = 1f; }
 		
+
 		rotation = Vector3.add(rotation, new Vector3(dy * sensitivity, dx * sensitivity, 0));
 		
 		float y = (float) (Math.sin(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
-		//float sY =  (float) (Math.cos(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
+		float sY =  (float) (Math.cos(Math.toRadians(rotation.x)) * moveSpeed);
 		
-		float x = (float) (Math.cos(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
-		float z = (float) (Math.sin(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
+		float x = (float) (Math.cos(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
+		float z = (float) (Math.sin(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
 		
 		if(Input.keyDown(GLFW.GLFW_KEY_A)) position = Vector3.add(position, new Vector3(-x,0,-z));
 		if(Input.keyDown(GLFW.GLFW_KEY_D)) position = Vector3.add(position, new Vector3(x,0,z));
