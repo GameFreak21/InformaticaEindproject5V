@@ -8,6 +8,11 @@ public class Vector3 {
 		this.y = 0.0f;
 		this.z = 0.0f;
 	}
+	public Vector3(float len){
+		this.x = len;
+		this.y = len;
+		this.z = len;
+	}
 	public Vector3(float x, float y, float z){
 		this.x = x;
 		this.y = y;
