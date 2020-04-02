@@ -8,9 +8,12 @@ import main.engine.math.Matrix;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
+import main.engine.objects.GameObject;
+import main.engine.renderer.graphics.Mesh;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.*;
+import main.engine.util.ModelLoader;
 
 
 public class MAIN_TEST {
@@ -37,6 +40,7 @@ public class MAIN_TEST {
 			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
 	};
 	
+	static GameObject joda = new GameObject(new Vector3(), new Vector3(), new Vector3(0.1f, 0.1f, 0.1f), ModelLoader.Modelloader("resources/Models/Baby_Yoda.obj"));
 	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
 	//static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
@@ -54,7 +58,7 @@ public class MAIN_TEST {
 		for(int i = 0; i < pyramids.length; i++) {
 			pyramids[i].gameObject.mesh.create();
 		}
-		
+		joda.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -78,7 +82,7 @@ public class MAIN_TEST {
 			for(int i = 0; i < pyramids.length; i++) {
 				renderer.renderMesh(pyramids[i].gameObject, camera);
 			}
-			
+			renderer.renderMesh(joda, camera);
 			window.swapBuffers();
 		}
 		for(int i = 0; i < boxs.length; i++) {
