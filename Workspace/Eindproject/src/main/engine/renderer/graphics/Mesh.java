@@ -9,7 +9,7 @@ import org.lwjgl.system.MemoryUtil;
 public class Mesh {
 	public Vertex[] vertices;
 	public int[] indices;
-	public int vertexArrayObject, positionBufferObject, indicesBufferObject, colorBufferObject;
+	public int vertexArrayObject, positionBufferObject, normalBufferObject, indicesBufferObject, colorBufferObject;
 	
 	
 	public Mesh(Vertex[] vertices, int[] indices) {
@@ -34,6 +34,18 @@ public class Mesh {
 		
 		positionBufferObject = storeData(positionBuffer, 0, 3);
 		
+		FloatBuffer normalBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
+		float[] normalData = new float[vertices.length * 3];
+		
+		for (int i = 0; i < vertices.length; i++) {
+			normalData[i*3] = vertices[i].position.x;
+			normalData[i*3 + 1] = vertices[i].position.y;
+			normalData[i*3 + 2] = vertices[i].position.z;
+		}
+		normalBuffer.put(normalData).flip();
+		
+		normalBufferObject = storeData(normalBuffer, 1, 3);
+		
 		//color buffer
 		FloatBuffer colorBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
 		float[] colorData = new float[vertices.length * 3];
@@ -45,7 +57,7 @@ public class Mesh {
 		}
 		colorBuffer.put(colorData).flip();
 		
-		colorBufferObject = storeData(colorBuffer, 1, 3);
+		colorBufferObject = storeData(colorBuffer, 2, 3);
 		
 		//indicesbuffer
 		IntBuffer indicesBuffer = MemoryUtil.memAllocInt(indices.length);
