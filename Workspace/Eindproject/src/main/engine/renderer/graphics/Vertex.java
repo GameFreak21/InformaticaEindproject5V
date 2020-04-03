@@ -5,13 +5,13 @@ import main.engine.math.Vector2;
 
 public class Vertex {
 	public Vector3 position, normal, color;
-	public Vector2 texturecoords;
+	public Vector2 textureCoords;
 	
-	public Vertex(Vector3 position, Vector3 normal, Vector3 color, Vector2 texturecoords) {
+	public Vertex(Vector3 position, Vector3 normal, Vector3 color, Vector2 textureCoords) {
 		this.position = position;
 		this.normal = normal;
 		this.color = color;
-		this.texturecoords = texturecoords;
+		this.textureCoords = textureCoords;
 	}
 	
 }

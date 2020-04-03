@@ -5,37 +5,23 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.opengl.GL31;
 import org.lwjgl.system.MemoryUtil;
-import main.engine.renderer.graphics.TextureLoader;
 
 public class Mesh {
 	public Vertex[] vertices;
 	public int[] indices;
 	public int vertexArrayObject, positionBufferObject, normalBufferObject, indicesBufferObject, colorBufferObject, textureBufferObject;
-	public TextureLoader texture;
+	public Material texture;
 	
 	
-	public Mesh(Vertex[] vertices, int[] indices, TextureLoader texture) {
+	public Mesh(Vertex[] vertices, int[] indices, Material texture) {
 		this.vertices = vertices;
 		this.indices = indices;
 		this.texture = texture;
-		
 	}
 	
 	public void create() {
 		vertexArrayObject = GL31.glGenVertexArrays();
 		GL31.glBindVertexArray(vertexArrayObject);
-		
-		//texture buffer
-		FloatBuffer textureBuffer = MemoryUtil.memAllocFloat(vertices.length * 2);
-		float[] textureData = new float[vertices.length * 2];
-		
-		for (int i = 0; i < vertices.length; i++) {
-			textureData[i*2] = vertices[i].texturecoords.x;
-			textureData[i*2 + 1] = vertices[i].texturecoords.y;
-		}
-		textureBuffer.put(textureData).flip();
-		
-		textureBufferObject = storeData(textureBuffer, 3, 2);
 		
 		//position buffer
 		FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
@@ -74,6 +60,19 @@ public class Mesh {
 		colorBuffer.put(colorData).flip();
 		
 		colorBufferObject = storeData(colorBuffer, 2, 3);
+		
+
+		//texture buffer
+		FloatBuffer textureBuffer = MemoryUtil.memAllocFloat(vertices.length * 2);
+		float[] textureData = new float[vertices.length * 2];
+		
+		for (int i = 0; i < vertices.length; i++) {
+			textureData[i*2] = vertices[i].textureCoords.x;
+			textureData[i*2 + 1] = vertices[i].textureCoords.y;
+		}
+		textureBuffer.put(textureData).flip();
+		
+		textureBufferObject = storeData(textureBuffer, 3, 2);
 		
 		//indicesbuffer
 		IntBuffer indicesBuffer = MemoryUtil.memAllocInt(indices.length);

@@ -11,10 +11,8 @@ import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
-import main.engine.renderer.graphics.TextureLoader;
 import main.engine.renderer.primitives.*;
 import main.engine.util.ModelLoader;
-
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
@@ -22,7 +20,7 @@ public class MAIN_TEST {
 	static Shader shader;
 
 	static Matrix matrix = new Matrix();
-	
+
 //	static Box[] boxs = {
 //			new Box(new Vector3(), new Vector3(), new Vector3(3,1,1)),
 //			new Box(new Vector3(0,0,1), new Vector3(), new Vector3(1,1,1)),
@@ -41,16 +39,21 @@ public class MAIN_TEST {
 //	};
 	static Box box;
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
-//	static GameObject pika = new GameObject(new Vector3(10,0,0), new Vector3(-90,0,0), new Vector3(0.05f), ModelLoader.LoadModel("resources/Models/Pikachu.stl"));
-	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
-	//static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
-	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
+	static GameObject pika;
+	// static Box box = new Box(new Vector3(), new Vector3(), new
+	// Vector3(0.5f,0.5f,0.5f));
+	// static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new
+	// Vector3(1.0f,1.0f,1.0f));
+	// static Wedge box = new Wedge(new Vector3(), new Vector3(), new
+	// Vector3(1.0f,1.0f,1.0f));
 
-	static Camera camera = new Camera(new Vector3(0,0,2), new Vector3());
-	
+	static Camera camera = new Camera(new Vector3(0, 0, 2), new Vector3());
+
 	public static void main(String[] args) {
 		window.create();
-		box = new Box(new Vector3(-10,0,0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		box = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(1),
+				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.create();
 //		}
@@ -62,7 +65,7 @@ public class MAIN_TEST {
 //		}
 		box.gameObject.mesh.create();
 //		yoda.mesh.create();
-//		pika.mesh.create();
+		pika.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -70,19 +73,25 @@ public class MAIN_TEST {
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
 
-			//System.out.println("FPS : " + (int)(1f/Time.deltaTime));
+			// System.out.println("FPS : " + (int)(1f/Time.deltaTime));
+
+			if (Input.keyDown(GLFW.GLFW_KEY_F11)) {
+				window.lockCursor(true);
+				camera.lock(false);
+			}
+			if (Input.keyDown(GLFW.GLFW_KEY_F10)) {
+				window.lockCursor(false);
+				camera.lock(true);
+			}
 			
-			if(Input.keyDown(GLFW.GLFW_KEY_F11)) window.lockCursor(true);
-			if(Input.keyDown(GLFW.GLFW_KEY_F10)) window.lockCursor(false);
-			
-			if(Input.keyDown(GLFW.GLFW_KEY_F6)) { //Reload shaders
+			if (Input.keyDown(GLFW.GLFW_KEY_F6)) { // Reload shaders
 				shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 				renderer = new Renderer(window, shader);
 				shader.create();
 			}
-			
+
 			camera.update();
-			//box.gameObject.update();
+			// box.gameObject.update();
 //			for(int i = 0; i < boxs.length; i++) {
 //				renderer.renderMesh(boxs[i].gameObject, camera);
 //			}
@@ -94,7 +103,7 @@ public class MAIN_TEST {
 //			}
 			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
-//			renderer.renderMesh(pika, camera);
+			renderer.renderMesh(pika, camera);
 			window.swapBuffers();
 		}
 //		for(int i = 0; i < boxs.length; i++) {
@@ -107,8 +116,8 @@ public class MAIN_TEST {
 //			pyramids[i].gameObject.mesh.destroy();
 //		}
 //		yoda.mesh.destroy();
-//		pika.mesh.destroy();
-		
+		pika.mesh.destroy();
+
 		shader.destroy();
 		window.kill();
 	}
