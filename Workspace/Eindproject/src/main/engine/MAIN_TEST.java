@@ -53,7 +53,8 @@ public class MAIN_TEST {
 		window.create();
 		box = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(1),
-				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
+				ModelLoader.LoadModel("resources/Models/ding.obj", "resources/textures/a.jpg"));
+		
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.create();
 //		}
