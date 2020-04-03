@@ -5,21 +5,37 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.opengl.GL31;
 import org.lwjgl.system.MemoryUtil;
+import main.engine.renderer.graphics.TextureLoader;
 
 public class Mesh {
 	public Vertex[] vertices;
 	public int[] indices;
-	public int vertexArrayObject, positionBufferObject, normalBufferObject, indicesBufferObject, colorBufferObject;
+	public int vertexArrayObject, positionBufferObject, normalBufferObject, indicesBufferObject, colorBufferObject, textureBufferObject;
+	public TextureLoader texture;
 	
 	
-	public Mesh(Vertex[] vertices, int[] indices) {
+	public Mesh(Vertex[] vertices, int[] indices, TextureLoader texture) {
 		this.vertices = vertices;
 		this.indices = indices;
+		this.texture = texture;
+		
 	}
 	
 	public void create() {
 		vertexArrayObject = GL31.glGenVertexArrays();
 		GL31.glBindVertexArray(vertexArrayObject);
+		
+		//texture buffer
+		FloatBuffer textureBuffer = MemoryUtil.memAllocFloat(vertices.length * 2);
+		float[] textureData = new float[vertices.length * 2];
+		
+		for (int i = 0; i < vertices.length; i++) {
+			textureData[i*2] = vertices[i].texturecoords.x;
+			textureData[i*2 + 1] = vertices[i].texturecoords.y;
+		}
+		textureBuffer.put(textureData).flip();
+		
+		textureBufferObject = storeData(textureBuffer, 3, 2);
 		
 		//position buffer
 		FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
@@ -38,9 +54,9 @@ public class Mesh {
 		float[] normalData = new float[vertices.length * 3];
 		
 		for (int i = 0; i < vertices.length; i++) {
-			normalData[i*3] = vertices[i].position.x;
-			normalData[i*3 + 1] = vertices[i].position.y;
-			normalData[i*3 + 2] = vertices[i].position.z;
+			normalData[i*3] = vertices[i].normal.x;
+			normalData[i*3 + 1] = vertices[i].normal.y;
+			normalData[i*3 + 2] = vertices[i].normal.z;
 		}
 		normalBuffer.put(normalData).flip();
 		
@@ -67,6 +83,8 @@ public class Mesh {
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, indicesBufferObject);
 		GL31.glBufferData(GL31.GL_ELEMENT_ARRAY_BUFFER, indicesBuffer, GL31.GL_STATIC_DRAW);
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, 0); //unbind buffer
+		
+		
 	}
 	
 	private int storeData(FloatBuffer buffer, int index, int size) {

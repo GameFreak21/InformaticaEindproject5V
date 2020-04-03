@@ -5,6 +5,9 @@ out vec4 outColor;
 in vec3 passColor;
 in vec3 Normal;
 in vec3 FragPos;
+in vec2 texcoords;
+
+uniform sampler2D ourTexture;
 
 void main(){
 	float ambientStrength = 0f;
@@ -18,5 +21,6 @@ void main(){
 	
 	vec3 result = (ambient + diffuse) * passColor;
 	
-	outColor = vec4(result, 1.0);
+	outColor = texture(ourTexture, texcoords);
+	
 }

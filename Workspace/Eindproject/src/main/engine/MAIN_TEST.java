@@ -11,6 +11,7 @@ import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
+import main.engine.renderer.graphics.TextureLoader;
 import main.engine.renderer.primitives.*;
 import main.engine.util.ModelLoader;
 
@@ -38,9 +39,9 @@ public class MAIN_TEST {
 //			new Pyramid(new Vector3(0,1,1), new Vector3(), new Vector3(1,1,1)),
 //			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
 //	};
-	
-	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
-	static GameObject pika = new GameObject(new Vector3(10,0,0), new Vector3(-90,0,0), new Vector3(0.05f), ModelLoader.LoadModel("resources/Models/Pikachu.stl"));
+	static Box box;
+//	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
+//	static GameObject pika = new GameObject(new Vector3(10,0,0), new Vector3(-90,0,0), new Vector3(0.05f), ModelLoader.LoadModel("resources/Models/Pikachu.stl"));
 	//static Box box = new Box(new Vector3(), new Vector3(), new Vector3(0.5f,0.5f,0.5f));
 	//static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
 	//static Wedge box = new Wedge(new Vector3(), new Vector3(), new Vector3(1.0f,1.0f,1.0f));
@@ -49,6 +50,7 @@ public class MAIN_TEST {
 	
 	public static void main(String[] args) {
 		window.create();
+		box = new Box(new Vector3(-10,0,0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.create();
 //		}
@@ -58,8 +60,9 @@ public class MAIN_TEST {
 //		for(int i = 0; i < pyramids.length; i++) {
 //			pyramids[i].gameObject.mesh.create();
 //		}
-		yoda.mesh.create();
-		pika.mesh.create();
+		box.gameObject.mesh.create();
+//		yoda.mesh.create();
+//		pika.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -67,7 +70,7 @@ public class MAIN_TEST {
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
 
-			System.out.println("FPS : " + (int)(1f/Time.deltaTime));
+			//System.out.println("FPS : " + (int)(1f/Time.deltaTime));
 			
 			if(Input.keyDown(GLFW.GLFW_KEY_F11)) window.lockCursor(true);
 			if(Input.keyDown(GLFW.GLFW_KEY_F10)) window.lockCursor(false);
@@ -89,8 +92,9 @@ public class MAIN_TEST {
 //			for(int i = 0; i < pyramids.length; i++) {
 //				renderer.renderMesh(pyramids[i].gameObject, camera);
 //			}
-			renderer.renderMesh(yoda, camera);
-			renderer.renderMesh(pika, camera);
+			renderer.renderMesh(box.gameObject, camera);
+//			renderer.renderMesh(yoda, camera);
+//			renderer.renderMesh(pika, camera);
 			window.swapBuffers();
 		}
 //		for(int i = 0; i < boxs.length; i++) {
@@ -102,8 +106,8 @@ public class MAIN_TEST {
 //		for(int i = 0; i < pyramids.length; i++) {
 //			pyramids[i].gameObject.mesh.destroy();
 //		}
-		yoda.mesh.destroy();
-		pika.mesh.destroy();
+//		yoda.mesh.destroy();
+//		pika.mesh.destroy();
 		
 		shader.destroy();
 		window.kill();
