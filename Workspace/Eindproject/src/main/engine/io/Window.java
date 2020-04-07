@@ -65,11 +65,16 @@ public class Window {
 		
 		GL31.glEnable(GL31.GL_DEPTH_TEST);
 		
+		GL31.glEnable(GL31.GL_CULL_FACE);
+		GL31.glFrontFace(GL31.GL_CW);
+		GL31.glCullFace(GL31.GL_BACK);
+		
+		
 		createCallbacks();
 
 		GLFW.glfwShowWindow(window); // show the window
 
-		// GLFW.glfwSwapInterval(0); //remove comment for v-sync off
+		GLFW.glfwSwapInterval(0); //remove comment for v-sync off
 
 	}
 

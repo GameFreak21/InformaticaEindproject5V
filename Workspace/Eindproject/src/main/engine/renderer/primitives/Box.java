@@ -16,65 +16,64 @@ public class Box {
 	Mesh mesh = new Mesh(
 			new Vertex[] { 
 					//front
-					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),
-					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),
-					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),
-					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),
-					
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//linksbovenvoor	
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),		//rechtsbovenvoor
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),	//rechtsondervoor
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//linksondervoor
+				
 					//right
-					new Vertex(new Vector3(0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),
+					new Vertex(new Vector3(0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),			//rechtsbovenachter
+					new Vertex(new Vector3(0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//rechtsonderachter
+					new Vertex(new Vector3(0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//rechtsbovenvoor
+					new Vertex(new Vector3(0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),			//rechtsondervoor
 					
 					//back
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),		//rechtsboven
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//linksboven
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//linksonder
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//rechtsonder
 					
 					//left
-					new Vertex(new Vector3(-0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),
+					new Vertex(new Vector3(-0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),		//linksbovenachter
+					new Vertex(new Vector3(-0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//linksonderachter
+					new Vertex(new Vector3(-0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//linksbovenvoor
+					new Vertex(new Vector3(-0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),		//linksondervoor
 					
 					//bottom
-					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//rechtsachter
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),	//rechtsvoor
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),	//linksachter
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),		//linksvoor
 					
 					//top
-					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),
-					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1))
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//linksachter
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//linksvoor
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsachter
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1))		//rechtsvoor
 				},
 			new int[] { 
-					//front
-					0, 1, 2, // triangles for rendering , top left, top right, bot right
-					0, 3, 2,
-					
+					//front					
+					1, 0, 3,
+					1, 3, 2,
 					//right
 					4, 5, 6,
-					6, 7, 5,
+					6, 5, 7,
 					
 					//back
 					8, 9, 10,
-					8, 11, 10,
+					10, 11, 8,
 					
 					//left
-					12, 13, 14,
-					14, 15, 13,
+					12, 14, 15,
+					12, 15, 13,
 					
 					//bottom
-					16, 17, 18,
-					18, 19, 17,
+					18, 16, 17,
+					18, 17, 19,
 					
 					//top
-					20, 21, 22,
-					22, 23, 21
+					20, 22, 23,
+					20, 23, 21
 				}, new Material("resources/textures/creeperhead.png"));
 	
 	

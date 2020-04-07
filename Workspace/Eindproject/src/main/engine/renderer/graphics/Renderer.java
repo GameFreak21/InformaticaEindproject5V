@@ -33,7 +33,7 @@ public class Renderer {
 		GL31.glTexImage2D(GL31.GL_TEXTURE_2D, 0, GL31.GL_RGB, object.mesh.texture.width, object.mesh.texture.height, 0,
 				GL31.GL_RGB, GL31.GL_UNSIGNED_BYTE, object.mesh.texture.buffer);
 
-		// GL31.glPolygonMode(GL31.GL_FRONT_AND_BACK, GL31.GL_LINE); //turn on wireframe
+		//GL31.glPolygonMode(GL31.GL_FRONT_AND_BACK, GL31.GL_LINE); //turn on wireframe
 		shader.bind();
 		shader.SetUniform("model", Matrix.transform(object.position, object.rotation, object.scale));
 		shader.SetUniform("projection", window.projectionMat);
