@@ -53,7 +53,7 @@ public class MAIN_TEST {
 	public static void main(String[] args) {
 		window.create();
 		box = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(1),
+		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(0.01f, 0.01f, 0.01f),
 				ModelLoader.LoadModel("resources/Models/Pikachu.stl", "resources/textures/a.jpg"));
 		quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
 		
@@ -108,7 +108,7 @@ public class MAIN_TEST {
 //			}
 			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
-//			renderer.renderMesh(pika, camera);
+			renderer.renderMesh(pika, camera);
 //			renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
 		}
