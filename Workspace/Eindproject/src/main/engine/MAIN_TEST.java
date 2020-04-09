@@ -106,10 +106,10 @@ public class MAIN_TEST {
 //			for(int i = 0; i < pyramids.length; i++) {
 //				renderer.renderMesh(pyramids[i].gameObject, camera);
 //			}
-			renderer.renderMesh(box.gameObject, camera);
+//			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
 			renderer.renderMesh(pika, camera);
-//			renderer.renderMesh(quad.gameObject, camera);
+			renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
 		}
 //		for(int i = 0; i < boxs.length; i++) {

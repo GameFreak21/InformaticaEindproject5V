@@ -22,7 +22,7 @@ public class Quad {
 			},
 			new int[] {
 					0, 1, 3,
-					0, 2, 3
+					2, 0, 3,  
 			}, new Material("resources/textures/creeperhead.png"));
 	
 	

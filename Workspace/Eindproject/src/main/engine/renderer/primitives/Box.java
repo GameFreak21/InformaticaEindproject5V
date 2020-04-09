@@ -16,10 +16,10 @@ public class Box {
 	Mesh mesh = new Mesh(
 			new Vertex[] { 
 					//front
-					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//linksbovenvoor	
-					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),		//rechtsbovenvoor
-					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),	//rechtsondervoor
-					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//linksondervoor
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//rechtsboven	
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),		//linksboven
+					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),	//linksonder
+					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//rechtsonder
 				
 					//right
 					new Vertex(new Vector3(0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),			//rechtsbovenachter
@@ -28,10 +28,10 @@ public class Box {
 					new Vertex(new Vector3(0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),			//rechtsondervoor
 					
 					//back
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),		//rechtsboven
-					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//linksboven
-					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//linksonder
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//rechtsonder
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),		//linksboven
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//rechtsboven
+					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsonder
+					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//linksonder
 					
 					//left
 					new Vertex(new Vector3(-0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),		//linksbovenachter
@@ -53,27 +53,27 @@ public class Box {
 				},
 			new int[] { 
 					//front					
-					1, 0, 3,
-					1, 3, 2,
+					0, 1, 3, 
+					1, 2, 3, 
 					//right
-					4, 5, 6,
-					6, 5, 7,
+					4, 6, 5,
+					6, 7, 5,
 					
 					//back
-					8, 9, 10,
-					10, 11, 8,
+					9, 8, 11, 
+					11, 10, 9,
 					
 					//left
-					12, 14, 15,
-					12, 15, 13,
+					14, 12, 13,
+					14, 13, 15,
 					
 					//bottom
-					18, 16, 17,
-					18, 17, 19,
+					16, 18, 19,
+					16, 19, 17,
 					
 					//top
-					20, 22, 23,
-					20, 23, 21
+					22, 20, 21,
+					22, 21, 23,
 				}, new Material("resources/textures/creeperhead.png"));
 	
 	
