@@ -40,7 +40,7 @@ public class MAIN_TEST {
 	static Box box;
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
 	static GameObject pika;
-	static Quad quad;
+	//static Quad quad;
 	// static Box box = new Box(new Vector3(), new Vector3(), new
 	// Vector3(0.5f,0.5f,0.5f));
 	// static Pyramid box = new Pyramid(new Vector3(0,0.5f,0), new Vector3(), new
@@ -53,9 +53,9 @@ public class MAIN_TEST {
 	public static void main(String[] args) {
 		window.create();
 		box = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(0.01f, 0.01f, 0.01f),
-				ModelLoader.LoadModel("resources/Models/Pikachu.stl", "resources/textures/a.jpg"));
-		quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
+		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(1f, 1f, 1f),
+				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
+		//quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
 		
 		
 //		for(int i = 0; i < boxs.length; i++) {
@@ -70,7 +70,7 @@ public class MAIN_TEST {
 		box.gameObject.mesh.create();
 //		yoda.mesh.create();
 		pika.mesh.create();
-		quad.gameObject.mesh.create();
+		//quad.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
@@ -109,7 +109,7 @@ public class MAIN_TEST {
 //			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
 			renderer.renderMesh(pika, camera);
-			renderer.renderMesh(quad.gameObject, camera);
+			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
 		}
 //		for(int i = 0; i < boxs.length; i++) {
