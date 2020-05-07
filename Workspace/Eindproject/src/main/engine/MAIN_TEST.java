@@ -9,6 +9,7 @@ import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
+import main.engine.physics.Collider;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.*;
@@ -37,7 +38,9 @@ public class MAIN_TEST {
 //			new Pyramid(new Vector3(0,1,1), new Vector3(), new Vector3(1,1,1)),
 //			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
 //	};
+	static GameObject yoda;
 	static Box box;
+	static Box box2; 
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
 	static GameObject pika;
 	//static Quad quad;
@@ -52,11 +55,12 @@ public class MAIN_TEST {
 
 	public static void main(String[] args) {
 		window.create();
-		box = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(), new Vector3(1f, 1f, 1f),
-				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
+		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(0, 0, 1), new Vector3(0.1f, 0.1f, 0.1f),
+				ModelLoader.LoadModel("resources/Models/Pikachu.stl", "resources/textures/p.png"));
 		//quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
-		
+		yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(0.01f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj", "resources/textures/creeperhead.png"));
 		
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.create();
@@ -68,7 +72,8 @@ public class MAIN_TEST {
 //			pyramids[i].gameObject.mesh.create();
 //		}
 		box.gameObject.mesh.create();
-//		yoda.mesh.create();
+		box2.gameObject.mesh.create();
+		yoda.mesh.create();
 		pika.mesh.create();
 		//quad.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
@@ -109,8 +114,12 @@ public class MAIN_TEST {
 //			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
 			renderer.renderMesh(pika, camera);
+			renderer.renderMesh(yoda,  camera);
+			renderer.renderMesh(box.gameObject, camera);
+			renderer.renderMesh(box2.gameObject, camera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
+			System.out.println(Collider.CheckCollision(yoda, pika));
 		}
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.destroy();

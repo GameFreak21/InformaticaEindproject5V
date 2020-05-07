@@ -6,7 +6,7 @@ import main.engine.math.Vector3;
 import main.engine.renderer.graphics.Mesh;
 
 public class GameObject {
-	public Vector3 position, rotation, scale;
+	public Vector3 position, rotation, scale, collisionMesh;
 	public Mesh mesh;
 
 	double time;
@@ -16,6 +16,7 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
+		
 	}
 
 	// temp voor test
