@@ -14,11 +14,14 @@ import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.*;
 import main.engine.util.ModelLoader;
+import main.engine.renderer.graphics.Mesh;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
 	static Renderer renderer;
 	static Shader shader;
+	public static float [] positiondata1;
+	public static float [] positiondata2; 
 
 	static Matrix matrix = new Matrix();
 
@@ -74,7 +77,9 @@ public class MAIN_TEST {
 		box.gameObject.mesh.create();
 		box2.gameObject.mesh.create();
 		yoda.mesh.create();
+		positiondata1 = yoda.mesh.positionData;
 		pika.mesh.create();
+		positiondata2 = pika.mesh.positionData;
 		//quad.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
@@ -119,7 +124,7 @@ public class MAIN_TEST {
 			renderer.renderMesh(box2.gameObject, camera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
-			System.out.println(Collider.CheckCollision(yoda, pika));
+			System.out.println(Collider.CheckCollision(yoda.mesh.positionData, pika.mesh.positionData));
 		}
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.destroy();

@@ -11,6 +11,7 @@ public class Mesh {
 	public int[] indices;
 	public int vertexArrayObject, positionBufferObject, normalBufferObject, indicesBufferObject, colorBufferObject, textureBufferObject;
 	public Material texture;
+	public float [] positionData;
 	
 	
 	public Mesh(Vertex[] vertices, int[] indices, Material texture) {
@@ -25,7 +26,7 @@ public class Mesh {
 		
 		//position buffer
 		FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
-		float[] positionData = new float[vertices.length * 3];
+		positionData = new float[vertices.length * 3];
 		
 		for (int i = 0; i < vertices.length; i++) {
 			positionData[i*3] = vertices[i].position.x;
