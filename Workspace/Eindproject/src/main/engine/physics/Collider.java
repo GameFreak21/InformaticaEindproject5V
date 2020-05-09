@@ -54,21 +54,27 @@ public class Collider {
 		
 		Vector3 position2 = new Vector3(Xm2, Ym2, Zm2);
 		Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
-		boolean collisionX = position1.x + scale1.x >= position2.x && position2.x + scale2.x >= position1.x;
-		boolean collisionY = position1.y + scale1.y >= position2.y && position2.y + scale2.y >= position1.y;
-		boolean collisionZ = position1.z + scale1.z >= position2.z && position2.z + scale2.z >= position1.z;
-		if (collisionX && collisionY && collisionZ) {
-			collision = true;
+		if (position1.x + scale1.x >= position2.x - scale2.x || position1.x - scale1.x >= position2.x + scale2.x || position2.x + scale2.x >= position1.x - scale1.x || position2.x -scale2.x >= position1.x + scale1.x) {
+			if (position1.y + scale1.y >= position2.y - scale2.y || position1.y - scale1.y >= position2.y + scale2.y || position2.y + scale2.y >= position1.y - scale1.y || position2.y -scale2.y >= position1.y + scale1.y) {
+				if (position1.z + scale1.z >= position2.z - scale2.z || position1.z - scale1.z >= position2.z + scale2.z || position2.z + scale2.z >= position1.z - scale1.z || position2.z -scale2.z >= position1.z + scale1.z) {
+					collision = true;
+				}
+			}
 		}
-		else {
-			collision = false;
-		}
-		
+//		boolean collisionX = position1.x + scale1.x >= position2.x && position2.x + scale2.x >= position1.x;
+//		boolean collisionY = position1.y + scale1.y >= position2.y && position2.y + scale2.y >= position1.y;
+//		boolean collisionZ = position1.z + scale1.z >= position2.z && position2.z + scale2.z >= position1.z;
+//		if (collisionX && collisionY && collisionZ) {
+//			collision = true;
+//		}
+//		else {
+//			collision = false;
+//		}
 		System.out.println("position1.x "+position1.x);
 		System.out.println("scale1.x" + scale1.x);
-		System.out.println("collisionX"+ collisionX);
-		System.out.println("collisionY" + collisionY);
-		System.out.println("CollisionZ" + collisionZ);
+//		System.out.println("collisionX"+ collisionX);
+//		System.out.println("collisionY" + collisionY);
+//		System.out.println("CollisionZ" + collisionZ);
 		System.out.println("collision" + collision);
 		return collision;
 	}
