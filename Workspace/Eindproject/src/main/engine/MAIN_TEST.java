@@ -10,6 +10,7 @@ import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 import main.engine.physics.Collider;
+import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.Renderer;
 import main.engine.renderer.graphics.Shader;
 import main.engine.renderer.primitives.*;
@@ -57,6 +58,7 @@ public class MAIN_TEST {
 	static Camera camera = new Camera(new Vector3(0, 0, 2), new Vector3());
 
 	public static void main(String[] args) {
+		Rigidbody body = new Rigidbody();
 		window.create();
 		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
@@ -84,7 +86,10 @@ public class MAIN_TEST {
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 		renderer = new Renderer(window, shader);
 		shader.create();
-
+		
+		Collider yodaCollider = new Collider(yoda.mesh.positionData);
+		Collider pikaCollider = new Collider(pika.mesh.positionData);
+		
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
 
@@ -118,13 +123,14 @@ public class MAIN_TEST {
 //			}
 //			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
+			body.applyGravity(box.gameObject);
 			renderer.renderMesh(pika, camera);
 			renderer.renderMesh(yoda,  camera);
 			renderer.renderMesh(box.gameObject, camera);
 			renderer.renderMesh(box2.gameObject, camera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
-			System.out.println(Collider.CheckCollision(yoda.mesh.positionData, pika.mesh.positionData));
+			System.out.println(Collider.CheckCollision(yodaCollider, pikaCollider));
 		}
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.destroy();
