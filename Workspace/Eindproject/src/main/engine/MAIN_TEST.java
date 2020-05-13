@@ -130,6 +130,9 @@ public class MAIN_TEST {
 			renderer.renderMesh(box2.gameObject, camera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
+			if (Collider.CheckCollision(yodaCollider, pikaCollider)) {
+				yoda.position = Vector3.add(yoda.position, new Vector3(1, 0, 0));
+			}
 			System.out.println(Collider.CheckCollision(yodaCollider, pikaCollider));
 		}
 //		for(int i = 0; i < boxs.length; i++) {

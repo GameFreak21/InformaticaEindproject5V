@@ -34,7 +34,7 @@ public class Collider {
 	
 	GameObject object1;
 	GameObject object2;
-	static boolean collision;
+	static boolean collision, xcol, ycol, zcol;
 	public static boolean CheckCollision(Collider col1, Collider col2) {
 		float Xm1 = (col1.maxX + col1.minX) / 2;
 		float Ym1 = (col1.maxY + col1.minY) / 2;
@@ -55,9 +55,12 @@ public class Collider {
 		Vector3 position2 = new Vector3(Xm2, Ym2, Zm2);
 		Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
 		if (position1.x + scale1.x >= position2.x - scale2.x || position1.x - scale1.x >= position2.x + scale2.x || position2.x + scale2.x >= position1.x - scale1.x || position2.x -scale2.x >= position1.x + scale1.x) {
+			xcol = true;
 			if (position1.y + scale1.y >= position2.y - scale2.y || position1.y - scale1.y >= position2.y + scale2.y || position2.y + scale2.y >= position1.y - scale1.y || position2.y -scale2.y >= position1.y + scale1.y) {
+				ycol = true;
 				if (position1.z + scale1.z >= position2.z - scale2.z || position1.z - scale1.z >= position2.z + scale2.z || position2.z + scale2.z >= position1.z - scale1.z || position2.z -scale2.z >= position1.z + scale1.z) {
 					collision = true;
+					zcol = true;
 				}
 			}
 		}
@@ -70,12 +73,15 @@ public class Collider {
 //		else {
 //			collision = false;
 //		}
-		System.out.println("position1.x "+position1.x);
-		System.out.println("scale1.x" + scale1.x);
+//		System.out.println("position1.x "+position1.x);
+//		System.out.println("scale1.x" + scale1.x);
 //		System.out.println("collisionX"+ collisionX);
 //		System.out.println("collisionY" + collisionY);
 //		System.out.println("CollisionZ" + collisionZ);
-		System.out.println("collision" + collision);
+//		System.out.println("collision" + collision);
+//		System.out.println("xcol" +(position1.x - scale1.x >= position2.x + scale2.x));
+//		System.out.println("ycol" + ycol);
+//		System.out.println("zcol" + zcol);
 		return collision;
 	}
 }
