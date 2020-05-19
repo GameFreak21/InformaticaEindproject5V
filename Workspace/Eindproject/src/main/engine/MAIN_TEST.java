@@ -62,8 +62,8 @@ public class MAIN_TEST {
 		window.create();
 		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(2, 0, 0), new Vector3(0, 0, 1), new Vector3(0.1f, 0.1f, 0.1f),
-				ModelLoader.LoadModel("resources/Models/Pikachu.stl", "resources/textures/p.png"));
+		pika = new GameObject(new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), new Vector3(1, 1, 1),
+				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
 		//quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
 		yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(0.01f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj", "resources/textures/creeperhead.png"));
 		
@@ -130,10 +130,13 @@ public class MAIN_TEST {
 			renderer.renderMesh(box2.gameObject, camera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
-			if (Collider.CheckCollision(yodaCollider, pikaCollider)) {
+
+			if (Collider.CheckCollision(yodaCollider, pikaCollider, yoda.position, pika.position)) {
 				yoda.position = Vector3.add(yoda.position, new Vector3(1, 0, 0));
+				
+				
 			}
-			System.out.println(Collider.CheckCollision(yodaCollider, pikaCollider));
+	//		System.out.println(Collider.CheckCollision(yodaCollider, pikaCollider));
 		}
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.destroy();
@@ -144,7 +147,7 @@ public class MAIN_TEST {
 //		for(int i = 0; i < pyramids.length; i++) {
 //			pyramids[i].gameObject.mesh.destroy();
 //		}
-//		yoda.mesh.destroy();
+		yoda.mesh.destroy();
 		pika.mesh.destroy();
 
 		shader.destroy();
