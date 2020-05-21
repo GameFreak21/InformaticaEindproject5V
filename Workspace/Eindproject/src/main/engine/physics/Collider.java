@@ -9,7 +9,7 @@ public class Collider {
 	float minY, maxY;
 	float minZ, maxZ;
 	
-	public Collider(float[] positionData) {
+	public Collider(float[] positionData, float schaal) {
 		for (int i = 0; i < (positionData.length /3); i++) {
 			float posX = positionData[(i*3)];
 			float posY = positionData[(i*3)+1];
@@ -29,13 +29,19 @@ public class Collider {
 			} else if (posZ < minZ) {
 				minZ = posZ;
 			}
-		}	
+		}
+		maxX = schaal * maxX;
+		maxY = schaal * maxY;
+		maxZ = schaal * maxZ;
+		minX = schaal * minX;
+		minY = schaal * minY;
+		minZ = schaal * minZ;
 	}
 	
 	GameObject object1;
 	GameObject object2;
-	static boolean collision, xcol, ycol, zcol;
-	public static boolean CheckCollision(Collider col1, Collider col2, Vector3 game1, Vector3 game2) {
+		public static boolean CheckCollision(Collider col1, Collider col2, Vector3 game1, Vector3 game2) {
+		boolean collision = false, xcol, ycol, zcol;
 		float Xm1 = (col1.maxX + col1.minX) / 2;
 		float Ym1 = (col1.maxY + col1.minY) / 2;
 		float Zm1 = (col1.maxZ + col1.minZ) / 2;
@@ -56,6 +62,8 @@ public class Collider {
 		Vector3 position2 = new Vector3(Xm2, Ym2, Zm2);
 		position2 = Vector3.add(position2,  game2);
 		Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
+		
+
 //		if (position1.x + scale1.x >= position2.x - scale2.x || position1.x - scale1.x >= position2.x + scale2.x || position2.x + scale2.x >= position1.x - scale1.x || position2.x -scale2.x >= position1.x + scale1.x) {
 //			xcol = true;
 //			if (position1.y + scale1.y >= position2.y - scale2.y || position1.y - scale1.y >= position2.y + scale2.y || position2.y + scale2.y >= position1.y - scale1.y || position2.y -scale2.y >= position1.y + scale1.y) {
@@ -66,29 +74,100 @@ public class Collider {
 //				}
 //			}
 //		}
-		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//object 1 in object 2 rechts
-			xcol = true;
-			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {
+		
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
 				ycol = true;
-				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
 					zcol = true;
 					collision = true;
 				}
 			}
 		}
-		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//object 1 in object 2 links
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
 			xcol = true;
-			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
 				ycol = true;
-				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) {
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
 					zcol = true;
 					collision = true;
 				}
 			}
 		}
-		if (position1.x + scale1.x >= position2.x + scale2.x && position2.x + scale2.x >= position1.x - scale1.x) {
-			
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			xcol = true;
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
 		}
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			xcol = true;
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+//
+//
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+				ycol = true;
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+				ycol = true;
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		
+		
+//		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+//			xcol = true;
+//			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+//				ycol = true;
+//				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+//					zcol = true;
+//					collision = true;
+//				}
+//			}
+//		}
 //		boolean collisionX = position1.x + scale1.x >= position2.x && position2.x + scale2.x >= position1.x;
 //		boolean collisionY = position1.y + scale1.y >= position2.y && position2.y + scale2.y >= position1.y;
 //		boolean collisionZ = position1.z + scale1.z >= position2.z && position2.z + scale2.z >= position1.z;
@@ -98,18 +177,7 @@ public class Collider {
 //		else {
 //			collision = false;
 //		}
-		System.out.println("1.1 "+ (position1.x +scale1.x));
-		System.out.println("1.1.1 " + position1.x);
-		System.out.println("1.1.2 " + scale1.x);
-		System.out.println("1.2 " + (position2.x - scale2.x));
-		System.out.println("2.1.1 " + (position2.x));
-		System.out.println("2.1.2 " + (scale2.x));
-		System.out.println("1" + (position1.x +scale1.x >= position2.x - scale2.x));
-		System.out.println("2" + (position1.x +scale1.x <= position2.x + scale2.x));
-		System.out.println("collision" + collision);
-		System.out.println("xcol" + xcol);
-		System.out.println("ycol" + ycol);
-		System.out.println("zcol" + zcol);
+
 		return collision;
 	}
 }

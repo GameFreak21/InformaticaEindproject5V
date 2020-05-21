@@ -58,14 +58,16 @@ public class MAIN_TEST {
 	static Camera camera = new Camera(new Vector3(0, 0, 2), new Vector3());
 
 	public static void main(String[] args) {
+		float schaal1 = 1;
+		float schaal2 = 0.01f;
 		Rigidbody body = new Rigidbody();
 		window.create();
 		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(0.5f, 0, 0), new Vector3(0, 0, 1), new Vector3(1, 1, 1),
+		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
 				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
 		//quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
-		yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(0.01f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj", "resources/textures/creeperhead.png"));
+		yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(schaal2), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj", "resources/textures/creeperhead.png"));
 		
 //		for(int i = 0; i < boxs.length; i++) {
 //			boxs[i].gameObject.mesh.create();
@@ -87,8 +89,8 @@ public class MAIN_TEST {
 		renderer = new Renderer(window, shader);
 		shader.create();
 		
-		Collider yodaCollider = new Collider(yoda.mesh.positionData);
-		Collider pikaCollider = new Collider(pika.mesh.positionData);
+		Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
+		Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
 		
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
