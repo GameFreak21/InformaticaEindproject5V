@@ -9,7 +9,7 @@ import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
-import main.engine.objects.TESTCAM;
+import main.engine.objects.PlayerCamera;
 import main.engine.physics.Collider;
 import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.Renderer;
@@ -24,7 +24,7 @@ public class MAIN_TEST {
 	static Shader shader;
 	public static float [] positiondata1;
 	public static float [] positiondata2; 
-
+	static boolean PlayerLock;
 	static Matrix matrix = new Matrix();
 
 //	static Box[] boxs = {
@@ -43,6 +43,7 @@ public class MAIN_TEST {
 //			new Pyramid(new Vector3(0,1,1), new Vector3(), new Vector3(1,1,1)),
 //			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
 //	};
+	public static GameObject player;
 	static GameObject yoda;
 	static Box box;
 	static Box box2; 
@@ -56,13 +57,16 @@ public class MAIN_TEST {
 	// static Wedge box = new Wedge(new Vector3(), new Vector3(), new
 	// Vector3(1.0f,1.0f,1.0f));
 
-	static TESTCAM camera = new TESTCAM(new Vector3(0, 0, 2), new Vector3());
+	static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0, 2), new Vector3());
+	static Camera camera = new Camera(new Vector3(), new Vector3());
 
 	public static void main(String[] args) {
 		float schaal1 = 1;
 		float schaal2 = 0.01f;
+		float schaal0  = 0.01f;
 		Rigidbody body = new Rigidbody();
 		window.create();
+		player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj", "resources/textures/p.png"));
 		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
@@ -84,6 +88,7 @@ public class MAIN_TEST {
 		yoda.mesh.create();
 		positiondata1 = yoda.mesh.positionData;
 		pika.mesh.create();
+		player.mesh.create();
 		positiondata2 = pika.mesh.positionData;
 		//quad.gameObject.mesh.create();
 		shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
@@ -92,6 +97,7 @@ public class MAIN_TEST {
 		
 		Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
 		Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
+		Collider playerCollider = new Collider(player.mesh.positionData, schaal0);
 		
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
@@ -106,14 +112,25 @@ public class MAIN_TEST {
 				window.lockCursor(false);
 				camera.lock(true);
 			}
+			if (Input.keyDown(GLFW.GLFW_KEY_F8)) {
+				PlayerLock = true;
+			}
+			if (Input.keyDown(GLFW.GLFW_KEY_F7)) {
+				PlayerLock = false;
+			}
+			
 			
 			if (Input.keyDown(GLFW.GLFW_KEY_F6)) { // Reload shaders
 				shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
 				renderer = new Renderer(window, shader);
 				shader.create();
 			}
-
-			camera.update();
+			if (PlayerLock) {
+				PlayerCamera.update();
+			}
+			else {
+				camera.update();
+			}
 			// box.gameObject.update();
 //			for(int i = 0; i < boxs.length; i++) {
 //				renderer.renderMesh(boxs[i].gameObject, camera);
@@ -127,10 +144,11 @@ public class MAIN_TEST {
 //			renderer.renderMesh(box.gameObject, camera);
 //			renderer.renderMesh(yoda, camera);
 			body.applyGravity(box.gameObject);
-			renderer.renderMesh(pika, camera);
+			renderer.renderMesh(pika, PlayerCamera);
 			renderer.renderMesh(yoda,  camera);
 			renderer.renderMesh(box.gameObject, camera);
 			renderer.renderMesh(box2.gameObject, camera);
+			renderer.renderMesh(player, PlayerCamera);
 			//renderer.renderMesh(quad.gameObject, camera);
 			window.swapBuffers();
 
