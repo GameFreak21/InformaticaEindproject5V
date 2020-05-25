@@ -9,6 +9,7 @@ import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
+import main.engine.objects.TESTCAM;
 import main.engine.physics.Collider;
 import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.Renderer;
@@ -55,7 +56,7 @@ public class MAIN_TEST {
 	// static Wedge box = new Wedge(new Vector3(), new Vector3(), new
 	// Vector3(1.0f,1.0f,1.0f));
 
-	static Camera camera = new Camera(new Vector3(0, 0, 2), new Vector3());
+	static TESTCAM camera = new TESTCAM(new Vector3(0, 0, 2), new Vector3());
 
 	public static void main(String[] args) {
 		Rigidbody body = new Rigidbody();
