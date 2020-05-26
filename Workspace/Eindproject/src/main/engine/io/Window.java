@@ -35,6 +35,7 @@ public class Window {
 		this.height = height;
 		this.bgColor = new Vector3(1.0f, 0.4f, 0.4f);
 		projectionMat = Matrix.projection((float) width / (float) height, fov, near, far);
+		this.create();
 	}
 
 	public void create() { // function for creating window

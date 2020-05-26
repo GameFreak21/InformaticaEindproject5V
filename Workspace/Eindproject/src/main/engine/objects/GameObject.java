@@ -16,7 +16,7 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
-		
+		this.mesh.create();
 	}
 
 	// temp voor test
@@ -28,5 +28,8 @@ public class GameObject {
 		// scale = new Vector3((float) Math.sin(time), (float) Math.sin(time), (float)
 		// Math.sin(time));
 	}
-
+//	
+//	public void destroy() {
+//		this.mesh.destroy();
+//	}
 }
