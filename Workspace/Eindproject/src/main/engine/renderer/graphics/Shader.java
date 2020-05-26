@@ -10,13 +10,14 @@ import main.engine.math.Vector3;
 import main.engine.math.Vector4;
 import main.engine.util.FileUtils;
 
-public class Shader {
+public abstract class Shader {
 	public String vertexFile, fragmentFile;
 	private int vertexID, fragmentID, programID;
 
 	public Shader(String vertexPath, String fragmentPath) {
 		vertexFile = FileUtils.loadAsString(vertexPath);
 		fragmentFile = FileUtils.loadAsString(fragmentPath);
+		this.create();
 	}
 
 	public void create() {
@@ -58,7 +59,7 @@ public class Shader {
 		GL31.glDeleteShader(vertexID);// cleanup
 		GL31.glDeleteShader(fragmentID);
 	}
-
+	
 	// uniform stuff
 	public void SetUniform(String name, Vector4 value) {
 		int location = GL31.glGetUniformLocation(programID, name);
@@ -102,6 +103,7 @@ public class Shader {
 	}
 
 	public void destroy() {
+		this.unbind();
 		GL31.glDetachShader(programID, vertexID);
 		GL31.glDetachShader(programID, fragmentID);
 		GL31.glDeleteShader(vertexID);

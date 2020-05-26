@@ -11,7 +11,7 @@ public class Camera {
 
 	private float oldMouseX, oldMouseY;
 	private float moveSpeed = 1f, sensitivity = 0.15f;
-	private boolean lockCam = true;
+	protected boolean lockCam = true;
 
 	public Camera(Vector3 position, Vector3 rotation) {
 		this.position = position;
