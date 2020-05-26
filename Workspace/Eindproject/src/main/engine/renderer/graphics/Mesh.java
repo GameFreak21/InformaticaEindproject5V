@@ -18,6 +18,7 @@ public class Mesh {
 		this.vertices = vertices;
 		this.indices = indices;
 		this.texture = texture;
+		this.create();
 	}
 	
 	public void create() {

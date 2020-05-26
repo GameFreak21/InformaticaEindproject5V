@@ -5,6 +5,8 @@ import org.lwjgl.glfw.GLFW;
 import main.engine.io.Input;
 import main.engine.io.Window;
 import main.engine.math.Matrix;
+import main.engine.math.Time;
+import main.engine.math.Vector2;
 import main.engine.math.Vector3;
 import main.engine.objects.GameObject;
 import main.engine.objects.PlayerCamera;
@@ -12,10 +14,28 @@ import main.engine.physics.Rigidbody;
 import main.engine.renderer.primitives.*;
 import main.engine.util.ModelLoader;
 import main.engine.renderer.graphics.MasterRenderer;
+import main.engine.renderer.graphics.Material;
+import main.engine.renderer.graphics.Mesh;
+import main.engine.renderer.graphics.Vertex;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
 	//public static Renderer renderer;
+	
+	static Mesh planeMesh = new Mesh(
+			new Vertex[] { 
+					//top
+					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 0)),	//linksachter
+					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0,1)),		//linksvoor
+					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1, 0)),		//rechtsachter
+					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1,1))		//rechtsvoor
+				},
+			new int[] { 
+					//top
+					0, 1, 3,
+					0, 3, 2
+				}, new Material("resources/textures/grass.png"));
+	
 	public static float [] positiondata1;
 	public static float [] positiondata2; 
 	static boolean PlayerLock;
@@ -38,7 +58,7 @@ public class MAIN_TEST {
 //			new Pyramid(new Vector3(0,1,1), new Vector3(), new Vector3(1,1,1)),
 //			new Pyramid(new Vector3(-2,1.75f,0.5f), new Vector3(), new Vector3(1,0.5f,2)),
 //	};
-	static GameObject yoda;
+	//static GameObject yoda;
 	static Box box;
 	static Box box2; 
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
@@ -78,10 +98,10 @@ public class MAIN_TEST {
 //		for(int i = 0; i < pyramids.length; i++) {
 //			pyramids[i].gameObject.mesh.create();
 //		}
-		Plane[] planes = new Plane[100];
+		GameObject[] planes = new GameObject[100];
 		for (int i = 0; i < 10; i++) {
 			for (int a = 0; a < 10; a++) {
-				planes[c] = new Plane(new Vector3(x, 0, y), new Vector3(), new Vector3(100, 1, 100));
+				planes[c] = new GameObject(new Vector3(x, 0, y), new Vector3(), new Vector3(100, 1, 100), planeMesh);
 				if (y > 1000) {
 					y = 0;
 				}
@@ -121,7 +141,7 @@ public class MAIN_TEST {
 //			}
 //				first = false;
 //			}
-			//System.out.println("FPS : " + (int)(1f/Time.deltaTime));
+			System.out.println("FPS : " + (int)(1f/Time.deltaTime));
 
 			if (Input.keyDown(GLFW.GLFW_KEY_F11)) {
 				window.lockCursor(true);
@@ -162,8 +182,8 @@ public class MAIN_TEST {
 
 			body.applyGravity(box.gameObject);
 			
-			for(Plane plane:planes) {
-				renderer.processGameObject(plane.gameObject);
+			for(GameObject plane:planes) {
+				renderer.processGameObject(plane);
 			}
 			renderer.processGameObject(pika);
 			

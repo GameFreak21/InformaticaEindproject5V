@@ -16,7 +16,6 @@ public class GameObject {
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
-		this.mesh.create();
 	}
 
 	// temp voor test
