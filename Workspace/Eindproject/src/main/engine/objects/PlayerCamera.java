@@ -14,6 +14,8 @@ public class PlayerCamera extends Camera{
 
 	public PlayerCamera(Vector3 position, Vector3 rotation) {
 		super(position, rotation);
+		this.position = position;
+		this.rotation = rotation;
 		// TODO Auto-generated constructor stub
 	}
 	
