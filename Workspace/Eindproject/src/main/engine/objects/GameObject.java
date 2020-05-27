@@ -3,19 +3,26 @@ package main.engine.objects;
 import org.lwjgl.glfw.GLFW;
 
 import main.engine.math.Vector3;
+import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.Mesh;
+import main.engine.physics.Rigidbody;
 
 public class GameObject {
-	public Vector3 position, rotation, scale, collisionMesh;
+	public Vector3 position, rotation, scale, collisionMesh, speed;
 	public Mesh mesh;
+	float mass;
+	public Rigidbody body;
 
 	double time;
 
-	public GameObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh) {
+	public GameObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, float mass, Vector3 speed) {
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
+		this.mass = mass;
+		this.body = new Rigidbody(mass);
+		this.speed = speed;
 	}
 
 	// temp voor test
