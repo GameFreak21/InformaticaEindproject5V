@@ -10,6 +10,7 @@ import main.engine.math.Vector2;
 import main.engine.math.Vector3;
 import main.engine.objects.GameObject;
 import main.engine.objects.PlayerCamera;
+import main.engine.physics.Collider;
 import main.engine.physics.Rigidbody;
 import main.engine.renderer.primitives.*;
 import main.engine.util.ModelLoader;
@@ -24,10 +25,10 @@ public class MAIN_TEST {
 
 	static Mesh planeMesh = new Mesh(new Vertex[] {
 			// top
-			new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 0)), // linksachter
-			new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 1)), // linksvoor
-			new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1, 0)), // rechtsachter
-			new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1, 1)) // rechtsvoor
+			new Vertex(new Vector3(-0.5f, 0, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 0)), // linksachter
+			new Vertex(new Vector3(-0.5f, 0, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 1)), // linksvoor
+			new Vertex(new Vector3(0.5f, 0, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1, 0)), // rechtsachter
+			new Vertex(new Vector3(0.5f, 0, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(1, 1)) // rechtsvoor
 	}, new int[] {
 			// top
 			0, 1, 3, 0, 3, 2 }, new Material("resources/textures/grass.png"));
@@ -36,7 +37,7 @@ public class MAIN_TEST {
 	public static float[] positiondata2;
 //	static boolean PlayerLock;
 //	static boolean first = true;
-	static int y = -1000, x = -1000, b = 0, c = 0;
+	static int y = -100, x = -100, b = 0, c = 0;
 //	static Box[] boxs = {
 //			new Box(new Vector3(), new Vector3(), new Vector3(3,1,1)),
 //			new Box(new Vector3(0,0,1), new Vector3(), new Vector3(1,1,1)),
@@ -55,10 +56,13 @@ public class MAIN_TEST {
 //	};
 	// static GameObject yoda;
 	static Box box;
-	static Box box2;
+	static Box player;
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
 	static GameObject pika;
 	static Plane plane;
+	public static Collider playerCollider;
+	public static Collider[] allCollider = new Collider[1603];
+	public static Vector3[] allGameObjectpositions = new Vector3[1603];
 	// static Quad quad;
 	// static Box box = new Box(new Vector3(), new Vector3(), new
 	// Vector3(0.5f,0.5f,0.5f));
@@ -69,21 +73,21 @@ public class MAIN_TEST {
 
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
-	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 5, 0), new Vector3());
+	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 10, 50), new Vector3());
 
 	public static void main(String[] args) {
 		float schaal1 = 1;
 		float schaal2 = 0.01f;
 		float schaal0 = 0.01f;
-		Rigidbody body = new Rigidbody();
+//		Rigidbody body = new Rigidbody();
 		MasterRenderer renderer = new MasterRenderer(window);
 		// player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
 		// Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj",
 		// "resources/textures/p.png"));
-		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
-				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
+		box = new Box(new Vector3(0.5f, 100, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		player = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 2, 0.5f));
+//		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
+//				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"), 1.0f, new Vector3());
 		// quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
 		// yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(schaal2),
 		// ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj",
@@ -98,32 +102,32 @@ public class MAIN_TEST {
 //		for(int i = 0; i < pyramids.length; i++) {
 //			pyramids[i].gameObject.mesh.create();
 //		}
-		GameObject[] planes = new GameObject[100];
-		for (int i = 0; i < 10; i++) {
-			for (int a = 0; a < 10; a++) {
-				planes[c] = new GameObject(new Vector3(x, 0, y), new Vector3(), new Vector3(100, 1, 100), planeMesh);
-				if (y > 1000) {
-					y = 0;
-				} else {
-					y = y + 100;
-				}
+		GameObject[] planes = new GameObject[1600];
+		for (int i = -1000; i < 1000; i = i +50) {
+			for (int a = -1000; a < 1000; a = a+50) {
+				planes[c] = new GameObject(new Vector3(i, 0, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f, new Vector3());
+				// (y > 100) {
+				// = 0;
+				//else {
+				// = y + 10;
+				//
 				c++;
 			}
-			x = x + 100;
+			//x = x + 10;
 
 		}
 		// plane = new Plane(new Vector3(5, 5, 5), new Vector3(), new Vector3());
 		// plane.gameObject.mesh.create();
 		// positiondata1 = yoda.mesh.positionData;
 		// player.mesh.create();
-		positiondata2 = pika.mesh.positionData;
+//		positiondata2 = pika.mesh.positionData;
 		// quad.gameObject.mesh.create();
 		// shader = new StaticShader();
 		// renderer = new Renderer(window, shader);
 
-		// Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
-		// Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
-		// Collider playerCollider = new Collider(player.mesh.positionData, schaal0);
+//		Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
+		//Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
+		playerCollider = new Collider(player.gameObject.mesh.positionData, new Vector3(0.5f, 2, 0.5f));
 
 		// test
 
@@ -176,13 +180,16 @@ public class MAIN_TEST {
 //				renderer.renderMesh(pyramids[i].gameObject, camera);
 //			}
 
-			body.applyGravity(box.gameObject);
+//			body.applyGravity(box.gameObject);
+			box.gameObject.body.applyGravity(box.gameObject);
 
 			for (GameObject plane : planes) {
 				renderer.processGameObject(plane);
 			}
 
-			renderer.processGameObject(pika);
+//			renderer.processGameObject(pika);
+			renderer.processGameObject(box.gameObject);
+			renderer.processGameObject(player.gameObject);
 
 			renderer.render(camera);
 			window.swapBuffers();

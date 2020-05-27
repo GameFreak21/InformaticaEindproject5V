@@ -6,10 +6,13 @@ import main.engine.MAIN_TEST;
 import main.engine.io.Input;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
+import main.engine.physics.Collider;
+import main.engine.renderer.graphics.MasterRenderer;
 
 public class PlayerCamera extends Camera {
 	private float oldMouseX, oldMouseY;
 	private float moveSpeed = 10f, sensitivity = 0.15f;
+	private Vector3 oldPosition, Old2position;
 
 	public PlayerCamera(Vector3 position, Vector3 rotation) {
 		super(position, rotation);
@@ -24,7 +27,11 @@ public class PlayerCamera extends Camera {
 
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
+		
+		
 		if (!lockCam) {
+			oldPosition = Old2position;
+			Old2position = position;
 			boolean running = Input.keyDown(GLFW.GLFW_KEY_LEFT_CONTROL);
 			if (running) {
 				moveSpeed = 25f;
@@ -43,23 +50,56 @@ public class PlayerCamera extends Camera {
 			float x = (float) (Math.cos(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
 			float z = (float) (Math.sin(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
 
-			if (Input.keyDown(GLFW.GLFW_KEY_A))
-				position = Vector3.add(position, new Vector3(-x, 0, -z));
-			if (Input.keyDown(GLFW.GLFW_KEY_D))
-				position = Vector3.add(position, new Vector3(x, 0, z));
-			if (Input.keyDown(GLFW.GLFW_KEY_S))
-				position = Vector3.add(position, new Vector3(-z, 0, x));
-			if (Input.keyDown(GLFW.GLFW_KEY_W))
-				position = Vector3.add(position, new Vector3(z, 0, -x));
+			if (Input.keyDown(GLFW.GLFW_KEY_A)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(-x, 0, -z));
+					System.out.println("geen collision!");}
+				else 
+					position = oldPosition;}
+			if (Input.keyDown(GLFW.GLFW_KEY_D)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(x, 0, z));
+					System.out.println("geen collision!");}
+			else
+				position = oldPosition;}
+			if (Input.keyDown(GLFW.GLFW_KEY_S)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(-z, 0, x));
+					System.out.println("geen collision!");}
+			else
+				position = oldPosition;}
+
+			if (Input.keyDown(GLFW.GLFW_KEY_W)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(z, 0, -x));
+					System.out.println("geen collision!");}
+				else {
+					position = oldPosition;
+					System.out.println("collision!");}}
+			System.out.println(this.position.z);
+			
+
 			
 			//JUMPING @ GRAVITY ETC
 			
-//			if (Input.keyDown(GLFW.GLFW_KEY_SPACE))
-//				position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
-//			if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT))
-//				position = Vector3.add(position, new Vector3(0, (float) (-moveSpeed * Time.deltaTime), 0));
+			if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
+					System.out.println("geen collision!");}
+				else 
+					position = oldPosition;}
+				
+			if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, MAIN_TEST.allCollider, this.position, MAIN_TEST.allGameObjectpositions)) {			
+					position = Vector3.add(position, new Vector3(0, (float) (-moveSpeed * Time.deltaTime), 0));
+					System.out.println("geen collision!");}
+				else 
+					position = oldPosition;}
+			
+			
+		}	
 		}
-	}
+	
 	
 	@Override
 	public void lock(Boolean lock) {

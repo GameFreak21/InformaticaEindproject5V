@@ -11,45 +11,46 @@ import main.engine.objects.GameObject;
 public class Box {
 	
 	public GameObject gameObject;
-	Vector3 pos, rot, scale;
+	Vector3 pos, rot, scale, speed;
+	float mass;
 
 	Mesh mesh = new Mesh(
 			new Vertex[] { 
 					//front
-					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//rechtsboven	
-					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),		//linksboven
-					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),	//linksonder
-					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//rechtsonder
+					new Vertex(new Vector3(-0.5f, 1, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//rechtsboven	
+					new Vertex(new Vector3(0.5f, 1, -0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(1,0)),		//linksboven
+					new Vertex(new Vector3(0.5f, 0f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,0)),	//linksonder
+					new Vertex(new Vector3(-0.5f, 0f, -0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//rechtsonder
 				
 					//right
-					new Vertex(new Vector3(0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),			//rechtsbovenachter
-					new Vertex(new Vector3(0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//rechtsonderachter
-					new Vertex(new Vector3(0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//rechtsbovenvoor
-					new Vertex(new Vector3(0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),			//rechtsondervoor
+					new Vertex(new Vector3(0.5f, 1,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),			//rechtsbovenachter
+					new Vertex(new Vector3(0.5f, 0,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//rechtsonderachter
+					new Vertex(new Vector3(0.5f, 1,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//rechtsbovenvoor
+					new Vertex(new Vector3(0.5f, 0f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),			//rechtsondervoor
 					
 					//back
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),		//linksboven
-					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//rechtsboven
-					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsonder
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//linksonder
+					new Vertex(new Vector3(-0.5f, 1, 0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),		//linksboven
+					new Vertex(new Vector3(0.5f, 1, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//rechtsboven
+					new Vertex(new Vector3(0.5f, 0, 0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsonder
+					new Vertex(new Vector3(-0.5f, 0, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),	//linksonder
 					
 					//left
-					new Vertex(new Vector3(-0.5f,0.5f,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),		//linksbovenachter
-					new Vertex(new Vector3(-0.5f,-0.5f,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//linksonderachter
-					new Vertex(new Vector3(-0.5f,0.5f,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//linksbovenvoor
-					new Vertex(new Vector3(-0.5f,-0.5f,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),		//linksondervoor
+					new Vertex(new Vector3(-0.5f, 1,-0.5f), new Vector3(), new Vector3(1.0f,0.0f,0.0f), new Vector2(0,1)),		//linksbovenachter
+					new Vertex(new Vector3(-0.5f, 0,-0.5f), new Vector3(), new Vector3(0.0f,1.0f,0.0f), new Vector2(0,1)),		//linksonderachter
+					new Vertex(new Vector3(-0.5f, 1,0.5f), new Vector3(), new Vector3(0.0f,0.0f,1.0f), new Vector2(0,1)),			//linksbovenvoor
+					new Vertex(new Vector3(-0.5f, 0,0.5f), new Vector3(), new Vector3(0.5f,0.0f,0.5f), new Vector2(0,1)),		//linksondervoor
 					
 					//bottom
-					new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//rechtsachter
-					new Vertex(new Vector3(-0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),	//rechtsvoor
-					new Vertex(new Vector3(0.5f, -0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),	//linksachter
-					new Vertex(new Vector3(0.5f, -0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),		//linksvoor
+					new Vertex(new Vector3(-0.5f, 0, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//rechtsachter
+					new Vertex(new Vector3(-0.5f, 0, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),	//rechtsvoor
+					new Vertex(new Vector3(0.5f, 0, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),	//linksachter
+					new Vertex(new Vector3(0.5f, 0, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1)),		//linksvoor
 					
 					//top
-					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//linksachter
-					new Vertex(new Vector3(-0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//linksvoor
-					new Vertex(new Vector3(0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsachter
-					new Vertex(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1))		//rechtsvoor
+					new Vertex(new Vector3(-0.5f, 1, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(0,1)),	//linksachter
+					new Vertex(new Vector3(-0.5f, 1, 0.5f), new Vector3(), new Vector3(0.0f, 1.0f, 0.0f), new Vector2(0,1)),		//linksvoor
+					new Vertex(new Vector3(0.5f, 1, -0.5f), new Vector3(), new Vector3(0.0f, 0.0f, 1.0f), new Vector2(0,1)),		//rechtsachter
+					new Vertex(new Vector3(0.5f, 1, 0.5f), new Vector3(), new Vector3(0.5f, 0.0f, 0.5f), new Vector2(0,1))		//rechtsvoor
 				},
 			new int[] { 
 					//front					
@@ -81,14 +82,18 @@ public class Box {
 		this.pos = pos;
 		this.scale = size;
 		this.rot = rot;
-		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+		this.mass = 2.0f;
+		this.speed = new Vector3();
+		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh, this.mass, this.speed);
 	}
 
 	public Box(Vector3 pos, Vector3 rot, float len) {
 		this.pos = pos;
 		this.scale = new Vector3(len, len, len);
 		this.rot = rot;
-		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+		this.mass = 1.0f;
+		this.speed = new Vector3();
+		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh, this.mass, this.speed);
 	}
 	
 	
