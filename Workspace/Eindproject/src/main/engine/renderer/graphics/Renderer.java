@@ -37,10 +37,13 @@ public class Renderer {
 		GL31.glBindBuffer(GL31.GL_ELEMENT_ARRAY_BUFFER, mesh.indicesBufferObject);
 
 		GL31.glBindTexture(GL31.GL_TEXTURE_2D, mesh.texture.textureID);
-		GL31.glTexParameteri(GL31.GL_TEXTURE_2D, GL31.GL_TEXTURE_MIN_FILTER, GL31.GL_NEAREST);
-		GL31.glTexParameteri(GL31.GL_TEXTURE_2D, GL31.GL_TEXTURE_MAG_FILTER, GL31.GL_NEAREST);
+        GL31.glGenerateMipmap(GL31.GL_TEXTURE_2D);
+        GL31.glTexParameteri(GL31.GL_TEXTURE_2D, GL31.GL_TEXTURE_MIN_FILTER, GL31.GL_LINEAR_MIPMAP_LINEAR);
+        GL31.glTexParameterf(GL31.GL_TEXTURE_2D, GL31.GL_TEXTURE_LOD_BIAS, -0.4f);
 		GL31.glTexImage2D(GL31.GL_TEXTURE_2D, 0, GL31.GL_RGB, mesh.texture.width, mesh.texture.height, 0,
 				GL31.GL_RGB, GL31.GL_UNSIGNED_BYTE, mesh.texture.buffer);
+		shader.SetUniform("shineDamper", mesh.texture.shineDamper);
+		shader.SetUniform("reflectivity", mesh.texture.reflectivity);
 	}
 	
 	private void unbindMesh() {

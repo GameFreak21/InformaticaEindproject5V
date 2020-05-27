@@ -8,6 +8,7 @@ import main.engine.math.Matrix;
 import main.engine.math.Time;
 import main.engine.math.Vector2;
 import main.engine.math.Vector3;
+import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 import main.engine.objects.PlayerCamera;
 import main.engine.physics.Rigidbody;
@@ -59,6 +60,7 @@ public class MAIN_TEST {
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
 	static GameObject pika;
 	static Plane plane;
+	static Vector3 sunPos = new Vector3(0,10,5);
 	// static Quad quad;
 	// static Box box = new Box(new Vector3(), new Vector3(), new
 	// Vector3(0.5f,0.5f,0.5f));
@@ -69,21 +71,28 @@ public class MAIN_TEST {
 
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
-	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 5, 0), new Vector3());
+	public static Camera camera = new Camera(new Vector3(0, 5, 0), new Vector3());
 
 	public static void main(String[] args) {
 		float schaal1 = 1;
-		float schaal2 = 0.01f;
-		float schaal0 = 0.01f;
-		Rigidbody body = new Rigidbody();
+//		float schaal2 = 0.01f;
+//		float schaal0 = 0.01f;
+//		Rigidbody body = new Rigidbody();
 		MasterRenderer renderer = new MasterRenderer(window);
 		// player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
 		// Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj",
 		// "resources/textures/p.png"));
-		box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		Box lightBox = new Box(sunPos,new Vector3(), new Vector3(0.5f));
+		//box = new Box(new Vector3(0.5f, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
+		//box2 = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
 		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
 				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"));
+//		
+//		lightBox.mesh.texture.shineDamper = 10;
+//		lightBox.mesh.texture.reflectivity = 1;
+		pika.mesh.texture.shineDamper = 10;
+		pika.mesh.texture.reflectivity = 1;
+		
 		// quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
 		// yoda = new GameObject(new Vector3(), new Vector3(), new Vector3(schaal2),
 		// ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj",
@@ -125,19 +134,10 @@ public class MAIN_TEST {
 		// Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
 		// Collider playerCollider = new Collider(player.mesh.positionData, schaal0);
 
-		// test
-
-		// test
 
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
-//			if (first) {		//objecten verdwijnen weer na 1x renderen, hoe te behouden?
 
-//			for (int x = 0; x < planes.length; x++) {
-//				//renderer.renderMesh(planes[x].gameObject, camera);
-//			}
-//				first = false;
-//			}
 //			System.out.println("FPS : " + (int) (1f / Time.deltaTime));
 
 			if (Input.keyDown(GLFW.GLFW_KEY_F11)) {
@@ -151,9 +151,10 @@ public class MAIN_TEST {
 //			if (Input.keyDown(GLFW.GLFW_KEY_F8)) {
 //				PlayerLock = true;
 //			}
-//			if (Input.keyDown(GLFW.GLFW_KEY_F7)) {
-//				PlayerLock = false;
-//			}
+			if (Input.keyDown(GLFW.GLFW_KEY_F7)) {
+				lightBox.update();
+				sunPos = lightBox.position;
+			}
 
 //			if (Input.keyDown(GLFW.GLFW_KEY_F6)) { // Reload shaders
 //				shader = new StaticShader();
@@ -176,15 +177,15 @@ public class MAIN_TEST {
 //				renderer.renderMesh(pyramids[i].gameObject, camera);
 //			}
 
-			body.applyGravity(box.gameObject);
+//			body.applyGravity(box.gameObject);
 
 			for (GameObject plane : planes) {
 				renderer.processGameObject(plane);
 			}
-
+			renderer.processGameObject(lightBox);
 			renderer.processGameObject(pika);
 
-			renderer.render(camera);
+			renderer.render(camera, sunPos);
 			window.swapBuffers();
 
 			// if (Collider.CheckCollision(yodaCollider, pikaCollider, yoda.position,

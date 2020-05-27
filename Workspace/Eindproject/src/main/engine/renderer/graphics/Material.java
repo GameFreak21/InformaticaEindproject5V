@@ -15,6 +15,9 @@ public class Material {
 	public ByteBuffer buffer;
 	String filename;
 	
+	public float shineDamper = 1;
+	public float reflectivity = 0;
+	
 	public Material(String filename) {
 		this.filename = filename;
 		LoadTexture(filename);
@@ -23,7 +26,7 @@ public class Material {
 	public void LoadTexture(String filename) {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File(filename));            
+            img = ImageIO.read(new File(filename));
         } catch (IOException e) {
             e.printStackTrace();
             return;

@@ -1,5 +1,6 @@
 package main.engine.renderer.primitives;
 
+import main.engine.math.Time;
 import main.engine.math.Vector2;
 import main.engine.math.Vector3;
 import main.engine.renderer.graphics.Material;
@@ -8,12 +9,9 @@ import main.engine.renderer.graphics.Vertex;
 import main.engine.objects.GameObject;
 
 
-public class Box {
-	
-	public GameObject gameObject;
-	Vector3 pos, rot, scale;
+public class Box extends GameObject{
 
-	Mesh mesh = new Mesh(
+	public static Mesh _mesh = new Mesh(
 			new Vertex[] { 
 					//front
 					new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//rechtsboven	
@@ -77,20 +75,21 @@ public class Box {
 				}, new Material("resources/textures/creeperhead.png"));
 	
 	
-	public Box(Vector3 pos, Vector3 rot, Vector3 size) {
-		this.pos = pos;
-		this.scale = size;
-		this.rot = rot;
-		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	public Box(Vector3 position, Vector3 rotation, Vector3 scale) {
+		super(position, rotation, scale, _mesh);
 	}
-
-	public Box(Vector3 pos, Vector3 rot, float len) {
-		this.pos = pos;
-		this.scale = new Vector3(len, len, len);
-		this.rot = rot;
-		this.gameObject = new GameObject(this.pos, this.rot, this.scale, this.mesh);
+	public Box(Vector3 position, Vector3 rotation, float len) {
+		super(position, rotation, new Vector3(len), _mesh);
 	}
 	
-	
-
+	boolean flip = false;
+	@Override
+	public void update() {
+		if(position.y > 10 || position.y < -10)
+			flip = !flip;
+		if(!flip)
+			position = Vector3.add(position, new Vector3(0,(float)(-5*Time.deltaTime),0));
+		else
+			position = Vector3.subtract(position, new Vector3(0,(float)(-5*Time.deltaTime),0));
+	}
 }

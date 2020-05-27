@@ -7,18 +7,24 @@ layout(location = 3) in vec2 textureCoords;
 
 out vec3 passColor;
 out vec3 Normal;
-out vec3 FragPos;
 out vec2 texCoords;
 
+out vec3 toCameraVector;
+out vec3 toLightVector;
+
+uniform vec3 sunPosition;
 uniform mat4 model;
 uniform mat4 projection;
 uniform mat4 view;
 
 void main(){
+	vec4 worldPosition = model * vec4(position, 1.0);
 	gl_Position = projection * view * model * vec4(position, 1.0);
 	
-	FragPos = vec3(model * vec4(position, 1.0));
 	texCoords = textureCoords;
 	passColor = color;
+	toLightVector = sunPosition - worldPosition.xyz;
+	toCameraVector = (inverse(view) * vec4(0.0,0.0,0.0,1.0)).xyz - worldPosition.xyz;
+	
 	Normal = mat3(transpose(inverse(model))) * normals;
 }

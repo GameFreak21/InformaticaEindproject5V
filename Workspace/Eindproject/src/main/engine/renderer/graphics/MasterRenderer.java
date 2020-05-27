@@ -7,6 +7,7 @@ import java.util.Map;
 
 import main.engine.io.Window;
 import main.engine.math.Matrix;
+import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 
@@ -23,10 +24,11 @@ public class MasterRenderer {
 	
 	private Map<Mesh,List<GameObject>> gameObjects = new HashMap<Mesh, List<GameObject>>();
 	
-	public void render(Camera camera) {
+	public void render(Camera camera, Vector3 sun) {
 		shader.bind();
 		shader.SetUniform("projection", window.projectionMat);
 		shader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
+		shader.SetUniform("sunPosition", sun);
 		
 		renderer.render(gameObjects);
 		
