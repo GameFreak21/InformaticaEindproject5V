@@ -7,21 +7,20 @@ import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.Mesh;
 import main.engine.physics.Rigidbody;
 
-public class GameObject {
+public class GameObject extends Rigidbody {
 	public Vector3 position, rotation, scale, collisionMesh, speed;
 	public Mesh mesh;
 	float mass;
-	public Rigidbody body;
 
 	double time;
 
 	public GameObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, float mass, Vector3 speed) {
+		super(mass);
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
 		this.mesh = mesh;
 		this.mass = mass;
-		this.body = new Rigidbody(mass);
 		this.speed = speed;
 	}
 

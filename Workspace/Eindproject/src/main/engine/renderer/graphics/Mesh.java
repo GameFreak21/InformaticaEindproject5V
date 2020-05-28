@@ -87,7 +87,7 @@ public class Mesh {
 		
 		
 	}
-	
+
 	private int storeData(FloatBuffer buffer, int index, int size) {
 		int bufferID = GL31.glGenBuffers();
 		GL31.glBindBuffer(GL31.GL_ARRAY_BUFFER, bufferID);

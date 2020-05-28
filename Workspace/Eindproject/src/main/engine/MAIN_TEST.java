@@ -19,6 +19,7 @@ import main.engine.renderer.graphics.MasterRenderer;
 import main.engine.renderer.graphics.Material;
 import main.engine.renderer.graphics.Mesh;
 import main.engine.renderer.graphics.Vertex;
+import main.engine.renderer.graphics.skybox.SkyboxRenderer;
 
 public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
@@ -59,9 +60,9 @@ public class MAIN_TEST {
 	static Box box;
 	static Box player;
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
-	static GameObject pika;
-	static Plane plane;
-	static Vector3 sunPos = new Vector3(0,10,5);
+	//static GameObject pika;
+	//static Plane plane;
+	static Vector3 sunPos = new Vector3(0, 10, 5);
 	public static Collider playerCollider;
 	public static Collider[] allCollider = new Collider[1603];
 	public static Vector3[] allGameObjectpositions = new Vector3[1603];
@@ -75,19 +76,22 @@ public class MAIN_TEST {
 
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
-	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 10, 50), new Vector3());
-
+	public static Camera camera = new Camera(new Vector3(0, 100, 50), new Vector3());
+	public static SkyboxRenderer skyboxRenderer;
+	
 	public static void main(String[] args) {
-		float schaal1 = 1;
-		float schaal2 = 0.01f;
-		float schaal0 = 0.01f;
+		//float schaal1 = 1;
+		//float schaal2 = 0.01f;
+		//float schaal0 = 0.01f;
+		skyboxRenderer = new SkyboxRenderer();
 //		Rigidbody body = new Rigidbody();
 		MasterRenderer renderer = new MasterRenderer(window);
 		// player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
 		// Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj",
 		// "resources/textures/p.png"));
-		box = new Box(new Vector3(0.5f, 100, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f));
-		player = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 2, 0.5f));
+		Box lightBox = new Box(sunPos, new Vector3(), new Vector3(0.3f), 1.0f, new Vector3());
+		//box = new Box(new Vector3(0.5f, 100, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f), 1.0f, new Vector3());
+	//	player = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 2, 0.5f), 1.0f, new Vector3());
 //		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
 //				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"), 1.0f, new Vector3());
 		// quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
@@ -105,17 +109,18 @@ public class MAIN_TEST {
 //			pyramids[i].gameObject.mesh.create();
 //		}
 		GameObject[] planes = new GameObject[1600];
-		for (int i = -1000; i < 1000; i = i +50) {
-			for (int a = -1000; a < 1000; a = a+50) {
-				planes[c] = new GameObject(new Vector3(i, 0, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f, new Vector3());
+		for (int i = -1000; i < 1000; i = i + 50) {
+			for (int a = -1000; a < 1000; a = a + 50) {
+				planes[c] = new GameObject(new Vector3(i, 100, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f,
+						new Vector3());
 				// (y > 100) {
 				// = 0;
-				//else {
+				// else {
 				// = y + 10;
 				//
 				c++;
 			}
-			//x = x + 10;
+			// x = x + 10;
 
 		}
 		// plane = new Plane(new Vector3(5, 5, 5), new Vector3(), new Vector3());
@@ -128,9 +133,8 @@ public class MAIN_TEST {
 		// renderer = new Renderer(window, shader);
 
 //		Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
-		//Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
-		playerCollider = new Collider(player.gameObject.mesh.positionData, new Vector3(0.5f, 2, 0.5f));
-
+		// Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
+		//playerCollider = new Collider(player.mesh.positionData, new Vector3(0.5f, 2, 0.5f));
 
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
@@ -175,17 +179,19 @@ public class MAIN_TEST {
 //			}
 
 //			body.applyGravity(box.gameObject);
-			box.gameObject.body.applyGravity(box.gameObject);
+		//	box.body.applyGravity(box);
 
 			for (GameObject plane : planes) {
 				renderer.processGameObject(plane);
 			}
 
 //			renderer.processGameObject(pika);
-			renderer.processGameObject(box.gameObject);
-			renderer.processGameObject(player.gameObject);
-
+			//renderer.processGameObject(box);
+			//renderer.processGameObject(player);
+		
 			renderer.render(camera, sunPos);
+
+			
 			window.swapBuffers();
 
 			// if (Collider.CheckCollision(yodaCollider, pikaCollider, yoda.position,

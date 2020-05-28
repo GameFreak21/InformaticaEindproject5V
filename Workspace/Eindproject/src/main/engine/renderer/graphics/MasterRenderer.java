@@ -12,22 +12,27 @@ import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
 import main.engine.physics.Collider;
+import main.engine.renderer.graphics.skybox.SkyboxRenderer;
 
 public class MasterRenderer {	
 	private StaticShader shader;
 	private Renderer renderer;
 	private Window window;
+	private SkyboxRenderer skyboxRenderer;
 	private int a = 0;
 	
 	public MasterRenderer(Window window) {
 		this.window = window;
 		this.shader = new StaticShader();
 		this.renderer = new Renderer(shader);
+		skyboxRenderer = new SkyboxRenderer();
 	}
 	
 	private Map<Mesh,List<GameObject>> gameObjects = new HashMap<Mesh, List<GameObject>>();
 	
 	public void render(Camera camera, Vector3 sun) {
+		
+		//skyboxRenderer.render(camera, window);
 		shader.bind();
 		shader.SetUniform("projection", window.projectionMat);
 		shader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
@@ -36,6 +41,7 @@ public class MasterRenderer {
 		renderer.render(gameObjects);
 		
 		shader.unbind();
+
 		gameObjects.clear();
 	}
 	
