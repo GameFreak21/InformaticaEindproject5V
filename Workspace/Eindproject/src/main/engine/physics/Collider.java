@@ -1,5 +1,7 @@
 package main.engine.physics;
 
+import java.util.ArrayList;
+
 import main.engine.math.Vector3;
 import main.engine.objects.GameObject;
 
@@ -8,7 +10,14 @@ public class Collider {
 	float minX, maxX;
 	float minY, maxY;
 	float minZ, maxZ;
-	static boolean collision = false;
+	static boolean collision = false;	
+	public static ArrayList<Collider> allCollider = new ArrayList<Collider>();
+	public static ArrayList<Vector3> allGameObjectPositions = new ArrayList<Vector3>();
+	//public static Collider[] allCollider = new Collider[1];
+//	public static Vector3[] allGameObjectPositions = new Vector3[1];
+	private static int i = 0;
+	
+
 	
 	public Collider(float[] positionData, Vector3 schaal) {
 		for (int i = 0; i < (positionData.length /3); i++) {
@@ -38,11 +47,45 @@ public class Collider {
 		minY = schaal.y * minY;
 		minZ = schaal.z * minZ;
 	}
-	
+	public static void CreateCollider(GameObject object) {
+		float[] positionData = object.mesh.positionData;
+		Vector3 schaal = object.scale;
+		Collider collider = new Collider(positionData, schaal);
+		allCollider.add(collider);
+		allGameObjectPositions.add(object.position);
+		
+//		if ((i < allCollider.length) && (allCollider[i] != null)) { 
+//			allCollider[i] = collider;		
+//			allGameObjectPositions[i] = object.position;
+//		}
+//		else {
+//			
+//
+//			Collider[] copy = new Collider[i + 1];
+//			Vector3[] copyP = new Vector3[i + 1];
+//			System.arraycopy(allCollider, 0, copy, 0, allCollider.length);
+//			System.arraycopy(allGameObjectPositions, 0, copyP, 0, allGameObjectPositions.length);
+//			allCollider = new Collider[i+1];
+//			allGameObjectPositions = new Vector3[i+1];
+//			System.arraycopy(copy, 0, allCollider, 0, copy.length);
+//			System.arraycopy(copyP, 0, allGameObjectPositions, 0, copyP.length);
+//			allCollider[i] = collider;
+//			allGameObjectPositions[i] = object.position;
+//		}
+//		System.out.println(allCollider.length);
+//		System.out.println(allGameObjectPositions.length);
+//		i++;
+	}
+	public static void CreateCollider(float[] positionData, Vector3 scale, Vector3 position) {
+		Collider collider = new Collider(positionData, scale);
+		allCollider.add(collider);
+		allGameObjectPositions.add(position);
+	}
 	GameObject object1;
 	GameObject object2;
 		public static boolean CheckCollision(Collider col1, Collider col2, Vector3 gameobjectposition1, Vector3 gameobjectposition2) {
 		boolean xcol, ycol, zcol;
+		collision = false;
 		float Xm1 = (col1.maxX + col1.minX) / 2;
 		float Ym1 = (col1.maxY + col1.minY) / 2;
 		float Zm1 = (col1.maxZ + col1.minZ) / 2;
@@ -181,9 +224,10 @@ public class Collider {
 
 		return collision;
 	}
-		public static boolean CheckCollision(Collider col1, Collider[] colliderarray, Vector3 gameobjectposition1, Vector3[] gameobjectpositionarray) {
-			for (int a = 0; a < colliderarray.length; a++) {
-				Collider col2 = colliderarray[a];
+		public static boolean CheckCollision(Collider col1, ArrayList<Collider> colliderarray, Vector3 gameobjectposition1, ArrayList<Vector3> gameobjectpositionarray) {
+			collision = false;
+			for (int a = 0; a < colliderarray.size(); a++) {
+				Collider col2 = colliderarray.get(a);
 				boolean xcol, ycol, zcol;
 				float Xm1 = (col1.maxX + col1.minX) / 2;
 				float Ym1 = (col1.maxY + col1.minY) / 2;
@@ -203,7 +247,7 @@ public class Collider {
 				float distZ2 = Math.abs(Math.abs(Zm2) - Math.abs(col2.maxZ));
 				
 				Vector3 position2 = new Vector3(Xm2, Ym2, Zm2);
-				position2 = Vector3.add(position2,  gameobjectpositionarray[a]);
+				position2 = Vector3.add(position2,  gameobjectpositionarray.get(a));
 				Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
 				
 	

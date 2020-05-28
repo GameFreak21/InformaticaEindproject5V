@@ -1,10 +1,12 @@
 package main.engine.math;
 
+
 import org.lwjgl.glfw.GLFW;
 
 public class Time {
 	
 	private double oldTime;
+	public static double Time;
 	
 	public static double deltaTime;
 	
@@ -15,5 +17,6 @@ public class Time {
 	public void update() {
 		deltaTime = GLFW.glfwGetTime() - oldTime;
 		oldTime = GLFW.glfwGetTime();
+		Time = GLFW.glfwGetTime();
 	}
 }

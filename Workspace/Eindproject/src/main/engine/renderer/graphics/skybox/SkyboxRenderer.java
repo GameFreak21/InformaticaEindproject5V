@@ -21,7 +21,7 @@ public class SkyboxRenderer {
 	public SkyboxRenderer() {
 		shader = new SkyboxShader();
 		cubemapTexture = Material.LoadCubeMap();
-		skybox = new Box(new Vector3(), new Vector3(), new Vector3(SIZE), 0, new Vector3());
+		skybox = new Box(new Vector3(), new Vector3(), new Vector3(SIZE), 0, new Vector3(), false);
 	}
 	
 	public void render(Camera camera, Window window) {

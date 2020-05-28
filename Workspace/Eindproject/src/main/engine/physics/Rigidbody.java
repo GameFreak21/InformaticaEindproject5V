@@ -16,14 +16,26 @@ public class Rigidbody {
 	}
 	
 	public void applyGravity(GameObject obj) {
+//		if (obj.position.y > 0.1f) {
+//			if(Math.abs(obj.speed.y) < MAX_VELOCITY)
+//				obj.speed.y = (float) (-1*mass*Time.deltaTime + obj.speed.y);
+//			if ((obj.position.y + obj.speed.y) > 0) 
+//				obj.position = Vector3.add(obj.position, new Vector3(0, obj.speed.y*(float)Time.deltaTime, 0));
+//			else
+//				obj.position = Vector3.add(obj.position, new Vector3(0, -(obj.position.y)+0.1f, 0));
+//		}
+		
 		if (obj.position.y > 0.1f) {
-			if(Math.abs(obj.speed.y) < MAX_VELOCITY);
-				obj.speed.y = (float) (-1*mass*Time.deltaTime + obj.speed.y);
+			obj.valtijd = Time.Time;
+			obj.speed.y = (float) (-1*mass*obj.valtijd);
 			if ((obj.position.y + obj.speed.y) > 0) 
-				obj.position = Vector3.add(obj.position, new Vector3(0, obj.speed.y*(float)Time.deltaTime, 0));
+				obj.position = Vector3.add(obj.position, new Vector3(0, obj.speed.y, 0));
 			else
 				obj.position = Vector3.add(obj.position, new Vector3(0, -(obj.position.y)+0.1f, 0));
 		}
+		else
+			obj.valtijd = 0;
+		
 
 	}
 }

@@ -1,6 +1,9 @@
 package main.engine;
 
+import java.util.Arrays;
+
 import org.lwjgl.glfw.GLFW;
+
 
 import main.engine.io.Input;
 import main.engine.io.Window;
@@ -25,7 +28,7 @@ public class MAIN_TEST {
 	static Window window = new Window("test", 720, 600);
 	// public static Renderer renderer;
 
-	static Mesh planeMesh = new Mesh(new Vertex[] {
+	public static Mesh planeMesh = new Mesh(new Vertex[] {
 			// top
 			new Vertex(new Vector3(-0.5f, 0, -0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 0)), // linksachter
 			new Vertex(new Vector3(-0.5f, 0, 0.5f), new Vector3(), new Vector3(1, 1, 1), new Vector2(0, 1)), // linksvoor
@@ -58,14 +61,15 @@ public class MAIN_TEST {
 //	};
 	// static GameObject yoda;
 	static Box box;
-	static Box player;
+	public static Box player;
 //	static GameObject yoda = new GameObject(new Vector3(0,0,0), new Vector3(), new Vector3(0.1f), ModelLoader.LoadModel("resources/Models/Baby_Yoda.obj"));
 	//static GameObject pika;
 	//static Plane plane;
 	static Vector3 sunPos = new Vector3(0, 10, 5);
 	public static Collider playerCollider;
-	public static Collider[] allCollider = new Collider[1603];
-	public static Vector3[] allGameObjectpositions = new Vector3[1603];
+	public static Collider boxCollider;
+
+//	public static Vector3[] allGameObjectpositions = new Vector3[1603];
 	// static Quad quad;
 	// static Box box = new Box(new Vector3(), new Vector3(), new
 	// Vector3(0.5f,0.5f,0.5f));
@@ -76,7 +80,7 @@ public class MAIN_TEST {
 
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
-	public static Camera camera = new Camera(new Vector3(0, 100, 50), new Vector3());
+	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 3, 5), new Vector3());
 	public static SkyboxRenderer skyboxRenderer;
 	
 	public static void main(String[] args) {
@@ -86,12 +90,12 @@ public class MAIN_TEST {
 		skyboxRenderer = new SkyboxRenderer();
 //		Rigidbody body = new Rigidbody();
 		MasterRenderer renderer = new MasterRenderer(window);
-		// player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
+		//player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
 		// Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj",
 		// "resources/textures/p.png"));
-		Box lightBox = new Box(sunPos, new Vector3(), new Vector3(0.3f), 1.0f, new Vector3());
-		//box = new Box(new Vector3(0.5f, 100, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f), 1.0f, new Vector3());
-	//	player = new Box(new Vector3(0, 0, 0), new Vector3(), new Vector3(0.5f, 2, 0.5f), 1.0f, new Vector3());
+		Box lightBox = new Box(sunPos, new Vector3(), new Vector3(0.3f), 1.0f, new Vector3(), false);
+		box = new Box(new Vector3(0.5f, 1, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f), 1.0f, new Vector3(), true);
+		player = new Box(new Vector3(10, 11, 12), new Vector3(), new Vector3(0.5f, 2, 0.5f), 0.0f, new Vector3(), false);
 //		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
 //				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"), 1.0f, new Vector3());
 		// quad = new Quad(new Vector3(0, 0, 0), new Vector3(), new Vector3(1, 1, 1));
@@ -112,7 +116,7 @@ public class MAIN_TEST {
 		for (int i = -1000; i < 1000; i = i + 50) {
 			for (int a = -1000; a < 1000; a = a + 50) {
 				planes[c] = new GameObject(new Vector3(i, 100, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f,
-						new Vector3());
+						new Vector3(), false);
 				// (y > 100) {
 				// = 0;
 				// else {
@@ -134,11 +138,12 @@ public class MAIN_TEST {
 
 //		Collider pikaCollider = new Collider(pika.mesh.positionData, schaal1);
 		// Collider yodaCollider = new Collider(yoda.mesh.positionData, schaal2);
-		//playerCollider = new Collider(player.mesh.positionData, new Vector3(0.5f, 2, 0.5f));
-
+		playerCollider = new Collider(player.mesh.positionData, new Vector3(0.5f, 2, 0.5f));
+		boxCollider = new Collider(box.mesh.positionData, new Vector3(0.5f, 0.5f, 0.5f));
+		System.out.println(Collider.CheckCollision(playerCollider, boxCollider, player.position, box.position));
+		
 		while (!GLFW.glfwWindowShouldClose(window.window)) {
 			window.update();
-
 //			System.out.println("FPS : " + (int) (1f / Time.deltaTime));
 
 			if (Input.keyDown(GLFW.GLFW_KEY_F11)) {
@@ -153,8 +158,8 @@ public class MAIN_TEST {
 //				PlayerLock = true;
 //			}
 			if (Input.keyDown(GLFW.GLFW_KEY_F7)) {
-				lightBox.update();
-				sunPos = lightBox.position;
+		//		lightBox.update();
+		//		sunPos = lightBox.position;
 			}
 
 //			if (Input.keyDown(GLFW.GLFW_KEY_F6)) { // Reload shaders
@@ -177,7 +182,7 @@ public class MAIN_TEST {
 //			for(int i = 0; i < pyramids.length; i++) {
 //				renderer.renderMesh(pyramids[i].gameObject, camera);
 //			}
-
+			//System.out.println(Collider.CheckCollision(playerCollider, boxCollider, player.position, box.position));
 //			body.applyGravity(box.gameObject);
 		//	box.body.applyGravity(box);
 
@@ -186,14 +191,14 @@ public class MAIN_TEST {
 			}
 
 //			renderer.processGameObject(pika);
-			//renderer.processGameObject(box);
-			//renderer.processGameObject(player);
+			renderer.processGameObject(box);
+			renderer.processGameObject(player);
 		
 			renderer.render(camera, sunPos);
-
-			
 			window.swapBuffers();
-
+//			for (int b = 0; b < allCollider.length; b++)
+//				System.out.println(allCollider[b].getClass());
+			
 			// if (Collider.CheckCollision(yodaCollider, pikaCollider, yoda.position,
 			// pika.position)) {
 			// yoda.position = Vector3.add(yoda.position, new Vector3(1, 0, 0));

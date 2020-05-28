@@ -74,8 +74,8 @@ public class Box extends GameObject{
 					22, 21, 23,
 				}, new Material("resources/textures/creeperhead.png"));
 	
-	public Box(Vector3 position, Vector3 rotation, Vector3 scale, float mass, Vector3 speed) {
-		super(position, rotation, scale, _mesh, mass, speed);
+	public Box(Vector3 position, Vector3 rotation, Vector3 scale, float mass, Vector3 speed, boolean collisions) {
+		super(position, rotation, scale, _mesh, mass, speed, collisions);
 	}
 	
 	boolean flip = false;
