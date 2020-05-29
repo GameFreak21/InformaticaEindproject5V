@@ -80,7 +80,7 @@ public class MAIN_TEST {
  
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
-	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 3, 5), new Vector3());
+	public static PlayerCamera camera = new PlayerCamera(new Vector3(0.5f, 4, 0), new Vector3());
 	public static SkyboxRenderer skyboxRenderer;
 
 	public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package main.engine.physics;
 
+import main.engine.MAIN_TEST;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
@@ -10,6 +11,7 @@ public class Rigidbody {
 	
 	private static final float MAX_VELOCITY = 7f;
 	public static Vector3 Fz = new Vector3(), zwaartekracht = new Vector3(), jump = new Vector3(), forces = new Vector3();
+	public static boolean floor = false, gravityCollide = false;
 	
 	public Rigidbody() {
 		this.mass = 1.0f;
@@ -42,6 +44,7 @@ public class Rigidbody {
 
 	}
 	public static Vector3 applyGravity(Camera camera) {
+		Fz = new Vector3();
 //		if (obj.position.y > 0.1f) {
 //			if(Math.abs(camera.speed.y) < MAX_VELOCITY)
 //				camera.speed.y = (float) (-1*mass*Time.deltaTime + camera.speed.y);
@@ -50,27 +53,37 @@ public class Rigidbody {
 //			else
 //				camera.position = Vector3.add(camera.position, new Vector3(0, -(camera.position.y)+0.1f, 0));
 //		}
-		
-		if (camera.position.y > 3f) {
-			camera.valtijd += Time.deltaTime;
-			if(Math.abs(camera.speed.y) < MAX_VELOCITY)
-				Fz.y = (float) (-1*camera.mass*camera.valtijd);
-//			if ((camera.position.y + camera.speed.y) > 0) 
-//				camera.position = Vector3.add(camera.position, new Vector3(0, camera.speed.y, 0));
-//			else
-//				camera.position = Vector3.add(camera.position, new Vector3(0, -(camera.position.y)+0.1f, 0));
-		}
-		else
-			camera.valtijd = 0;
-		return Fz;
+			if (camera.position.y > 2f) {
+				camera.valtijd += Time.deltaTime;
+				if(Math.abs(camera.speed.y) < MAX_VELOCITY)
+					Fz.y = (float) (-2*camera.mass*camera.valtijd);
+				if (camera.position.y + Fz.y < 0)
+					Fz.y = 0.1f;
+				floor = false;
+			}
+			else {
+				camera.valtijd = 0;
+				floor = true;
+			}
+			if ((Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, Vector3.add(camera.position, Fz), Collider.allGameObjectPositions)) || (Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, new Vector3(camera.position.x, camera.position.y - 1, camera.position.z), Collider.allGameObjectPositions))) {
+				floor = true;
+				Fz = new Vector3();
+				gravityCollide = true;
+			}
+			else 
+				gravityCollide = false;
+			
+			return Fz;
 
 	}
 	public static void applyForces(Camera camera) {
+		zwaartekracht = new Vector3();
+		jump = new Vector3();
+		forces = new Vector3();
 		zwaartekracht = applyGravity(camera);
 		jump = camera.speed;
 		forces = Vector3.subtract(jump, zwaartekracht);
 		camera.speed = Vector3.add(camera.speed,  forces);
-		System.out.println(forces.y);
 		camera.position = Vector3.add(camera.position, forces);
 		if (camera.position.y <= 0)
 			camera.position.y = 0;

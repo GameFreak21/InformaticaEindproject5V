@@ -623,6 +623,12 @@ public class Collider {
 					}
 				}
 				if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+//					System.out.println("position1.y - scale1.y " + (position1.y - scale1.y));
+//					System.out.println("position1.y " + position1.y);
+//					System.out.println("scale1.y " + scale1.y);
+//					System.out.println("position2.y + scale2.y " + (position2.y + scale2.y));
+//					System.out.println("position1.y - scale1.y " + (position1.y + scale1.y));
+//					System.out.println("position2.y - scale2.y " + (position2.y - scale2.y));
 					xcol = true;
 					if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
 						ycol = true;
@@ -702,6 +708,7 @@ public class Collider {
 						}
 					}
 				}
+				
 				
 				
 		//
