@@ -28,7 +28,6 @@ public class Camera {
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
 		
-		this.valtijd = Time.Time;
 		if (!lockCam) {
 			boolean running = Input.keyDown(GLFW.GLFW_KEY_LEFT_CONTROL);
 			if (running) {

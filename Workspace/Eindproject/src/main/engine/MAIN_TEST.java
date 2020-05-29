@@ -77,7 +77,7 @@ public class MAIN_TEST {
 	// Vector3(1.0f,1.0f,1.0f));
 	// static Wedge box = new Wedge(new Vector3(), new Vector3(), new
 	// Vector3(1.0f,1.0f,1.0f));
-
+ 
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
 	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 3, 5), new Vector3());
@@ -115,7 +115,7 @@ public class MAIN_TEST {
 		GameObject[] planes = new GameObject[1600];
 		for (int i = -1000; i < 1000; i = i + 50) {
 			for (int a = -1000; a < 1000; a = a + 50) {
-				planes[c] = new GameObject(new Vector3(i, 100, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f,
+				planes[c] = new GameObject(new Vector3(i, 0, a), new Vector3(), new Vector3(50, 1, 50), planeMesh, 1.0f,
 						new Vector3(), false);
 				// (y > 100) {
 				// = 0;

@@ -23,7 +23,7 @@ public class Quad extends GameObject {
 			}, new Material("resources/textures/creeperhead.png"));
 	
 	public Quad(Vector3 position, Vector3 rotation, Vector3 scale, float mass, Vector3 speed) {
-		super(position, rotation, scale, _mesh, mass, speed);
+		super(position, rotation, scale, _mesh, mass, speed, false);
 	}
 //	public Quad(Vector3 pos, Vector3 rot, Vector3 size) {
 //		this.pos = pos;
