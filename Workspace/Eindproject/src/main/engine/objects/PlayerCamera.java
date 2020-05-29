@@ -7,12 +7,14 @@ import main.engine.io.Input;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.physics.Collider;
+import main.engine.physics.Rigidbody;
 import main.engine.renderer.graphics.MasterRenderer;
 
 public class PlayerCamera extends Camera {
 	private float oldMouseX, oldMouseY;
 	private float moveSpeed = 10f, sensitivity = 0.15f;
-	private Vector3 oldPosition = new Vector3(), olderPosition = new Vector3();
+	private Vector3 oldPosition = new Vector3();
+
 
 	public PlayerCamera(Vector3 position, Vector3 rotation) {
 		super(position, rotation);
@@ -28,7 +30,8 @@ public class PlayerCamera extends Camera {
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
 		
-		
+		Rigidbody.applyGravity(this);
+		this.valtijd = Time.Time;
 		if (!lockCam) {
 //			 ((oldPosition.x != position.x) || (oldPosition.y != position.y) || (oldPosition.z != position.z)
 
@@ -68,8 +71,10 @@ public class PlayerCamera extends Camera {
 				
 				//JUMPING @ GRAVITY ETC
 				
-				if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) 	
+				if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) {
+					
 					position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
+				}
 				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 
 					position = Vector3.add(position, new Vector3(0, (float) (-moveSpeed * Time.deltaTime), 0));
 			

@@ -7,15 +7,18 @@ import main.engine.math.Time;
 import main.engine.math.Vector3;
 
 public class Camera {
-	public Vector3 position, rotation;
+	public Vector3 position, rotation, speed = new Vector3();
 
 	private float oldMouseX, oldMouseY;
 	private float moveSpeed = 1f, sensitivity = 0.15f;
 	protected boolean lockCam = true;
+	public double valtijd;
+	public float mass = 1.0f;
 
 	public Camera(Vector3 position, Vector3 rotation) {
 		this.position = position;
 		this.rotation = rotation;
+		this.valtijd = Time.Time;
 	}
 
 	public void update() {
@@ -24,6 +27,8 @@ public class Camera {
 
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
+		
+		this.valtijd = Time.Time;
 		if (!lockCam) {
 			boolean running = Input.keyDown(GLFW.GLFW_KEY_LEFT_CONTROL);
 			if (running) {

@@ -158,6 +158,68 @@ public class Collider {
 				}
 			}
 		}
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			xcol = true;
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				ycol = true;
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				ycol = true;
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+			if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+				ycol = true;
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		
+		
 //
 //
 		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
@@ -200,6 +262,280 @@ public class Collider {
 				}
 			}
 		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+				ycol = true;
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+			xcol = true;
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+				ycol = true;
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+			xcol = true;
+			if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+				ycol = true;
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+					zcol = true;
+					collision = true;
+				}
+			}
+		}
+		if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+			xcol = true;
+			if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+				if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+					collision = true;
+				}
+			}
+			//
+			//
+			//
+			//VAN 1 NAAR 2
+			//
+			//
+						
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								ycol = true;
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						
+						
+				//
+				//
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+								ycol = true;
+								if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+							xcol = true;
+							if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+								ycol = true;
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+									zcol = true;
+									collision = true;
+								}
+							}
+						}
+						if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+							xcol = true;
+							if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+								if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+									collision = true;
+								}
+							}
+						}
+						
 		
 		
 //		if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
@@ -222,8 +558,10 @@ public class Collider {
 //			collision = false;
 //		}
 
-		return collision;
+		
 	}
+		return collision;
+		}
 		public static boolean CheckCollision(Collider col1, ArrayList<Collider> colliderarray, Vector3 gameobjectposition1, ArrayList<Vector3> gameobjectpositionarray) {
 			collision = false;
 			for (int a = 0; a < colliderarray.size(); a++) {
@@ -250,7 +588,10 @@ public class Collider {
 				position2 = Vector3.add(position2,  gameobjectpositionarray.get(a));
 				Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
 				
-	
+				System.out.println("pos1.y  " + position1.y);
+				System.out.println("scale1.y " + scale1.y);
+				System.out.println("pos2.y " + position2.y);
+				System.out.println("scale2.y " + scale2.y);
 	//			if (position1.x + scale1.x >= position2.x - scale2.x || position1.x - scale1.x >= position2.x + scale2.x || position2.x + scale2.x >= position1.x - scale1.x || position2.x -scale2.x >= position1.x + scale1.x) {
 	//				xcol = true;
 	//				if (position1.y + scale1.y >= position2.y - scale2.y || position1.y - scale1.y >= position2.y + scale2.y || position2.y + scale2.y >= position1.y - scale1.y || position2.y -scale2.y >= position1.y + scale1.y) {
@@ -301,6 +642,68 @@ public class Collider {
 						}
 					}
 				}
+				if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+					xcol = true;
+					if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+						ycol = true;
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						ycol = true;
+						if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x +scale1.x >= position2.x - scale2.x && position1.x +scale1.x <= position2.x + scale2.x) {				//rechterpunt object 1 in object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						ycol = true;
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+					if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+						ycol = true;
+						if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+					if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
+						ycol = true;
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2					
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				
+				
 		//
 		//
 				if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
@@ -343,18 +746,287 @@ public class Collider {
 						}
 					}
 				}
+				if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+					xcol = true;
+					if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+						ycol = true;
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+					xcol = true;
+					if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+						ycol = true;
+						if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+					xcol = true;
+					if (position1.y +scale1.y >= position2.y - scale2.y && position1.y +scale1.y <= position2.y + scale2.y) {			//bovenste punt object 1 in object 2
+						ycol = true;
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z +scale1.z >= position2.z - scale2.z && position1.z +scale1.z <= position2.z + scale2.z) {		//voorste punt object 1 in object 2
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+					xcol = true;
+					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+							collision = true;
+						}
+					}
+				}
+	//
+	//
+	//
+	//VAN 1 NAAR 2
+	//
+	//
+				
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x +scale2.x >= position1.x - scale1.x && position2.x +scale2.x <= position1.x + scale1.x) {				//rechterpunt object 2 in object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						ycol = true;
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1					
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
 				
 				
-	//			if (position1.x - scale1.x <= position2.x + scale2.x && position1.x - scale1.x >= position2.x - scale2.x) {				//linkerpunt object 1 in object 2
-	//				xcol = true;
-	//				if (position1.y - scale1.y <= position2.y + scale2.y && position1.y - scale1.y >= position2.y - scale2.y) {			//onderste punt object 1 in object 2
-	//					ycol = true;
-	//					if (position1.z - scale1.z <= position2.z + scale2.z && position1.z - scale1.z >= position2.z - scale2.z) { 	// achterste punt object 1 in object 2
-	//						zcol = true;
-	//						collision = true;
-	//					}
-	//				}
-	//			}
+		//
+		//
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y - scale2.y <= position1.y + scale1.y && position2.y - scale2.y >= position1.y - scale1.y) {			//onderste punt object 2 in object 1
+						ycol = true;
+						if (position2.z - scale2.z <= position1.z + scale1.z && position2.z - scale2.z >= position1.z - scale1.z) { 	// achterste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x - scale2.x <= position1.x + scale1.x && position2.x - scale2.x >= position1.x - scale1.x) {				//linkerpunt object 2 in object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+					xcol = true;
+					if (position2.y +scale2.y >= position1.y - scale1.y && position2.y +scale2.y <= position1.y + scale1.y) {			//bovenste punt object 2 in object 1
+						ycol = true;
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z +scale2.z >= position1.z - scale1.z && position2.z +scale2.z <= position1.z + scale1.z) {		//voorste punt object 2 in object 1
+							zcol = true;
+							collision = true;
+						}
+					}
+				}
+				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+					xcol = true;
+					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+							collision = true;
+						}
+					}
+				}
+				
+				
+				
+				
+				
+				
+				
 	//			boolean collisionX = position1.x + scale1.x >= position2.x && position2.x + scale2.x >= position1.x;
 	//			boolean collisionY = position1.y + scale1.y >= position2.y && position2.y + scale2.y >= position1.y;
 	//			boolean collisionZ = position1.z + scale1.z >= position2.z && position2.z + scale2.z >= position1.z;
@@ -366,9 +1038,24 @@ public class Collider {
 	//			}
 	
 //				return collision;
-			}
-		return collision;
-		}
+//				if (position1.x <= position2.x + scale2.x && position1.x >= position2.x - scale2.x) {									// object1 middenin object 2
+//					if (position1.y <= position2.y + scale2.y && position1.y >= position2.y - scale2.y) {								// object1 middenin object 2
+//						if (position1.z <= position2.z + scale2.z && position1.z >= position2.z - scale2.z) {							// object1 middenin object 2
+//							collision = true;
+//						}
+//					}
+//				}
+//				if (position2.x <= position1.x + scale1.x && position2.x >= position1.x - scale1.x) {									// object2 middenin object 1
+//					if (position2.y <= position1.y + scale1.y && position2.y >= position1.y - scale1.y) {								// object2 middenin object 1
+//						if (position2.z <= position1.z + scale1.z && position2.z >= position1.z - scale1.z) {							// object2 middenin object 1
+//							collision = true;
+//						}
+//					}
+//				}
+//			}
 		
+			}
+			return collision;
+		}
 }
 
