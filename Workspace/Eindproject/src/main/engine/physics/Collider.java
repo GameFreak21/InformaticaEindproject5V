@@ -588,10 +588,10 @@ public class Collider {
 				position2 = Vector3.add(position2,  gameobjectpositionarray.get(a));
 				Vector3 scale2 = new Vector3(distX2, distY2, distZ2);
 				
-				System.out.println("pos1.y  " + position1.y);
-				System.out.println("scale1.y " + scale1.y);
-				System.out.println("pos2.y " + position2.y);
-				System.out.println("scale2.y " + scale2.y);
+//				System.out.println("pos1.y  " + position1.y);
+//				System.out.println("scale1.y " + scale1.y);
+//				System.out.println("pos2.y " + position2.y);
+//				System.out.println("scale2.y " + scale2.y);
 	//			if (position1.x + scale1.x >= position2.x - scale2.x || position1.x - scale1.x >= position2.x + scale2.x || position2.x + scale2.x >= position1.x - scale1.x || position2.x -scale2.x >= position1.x + scale1.x) {
 	//				xcol = true;
 	//				if (position1.y + scale1.y >= position2.y - scale2.y || position1.y - scale1.y >= position2.y + scale2.y || position2.y + scale2.y >= position1.y - scale1.y || position2.y -scale2.y >= position1.y + scale1.y) {

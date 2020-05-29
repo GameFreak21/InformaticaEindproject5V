@@ -72,7 +72,8 @@ public class PlayerCamera extends Camera {
 				//JUMPING @ GRAVITY ETC
 				
 				if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) {
-					
+					this.speed.y = 100;
+					Rigidbody.applyForces(this);
 					position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
 				}
 				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 

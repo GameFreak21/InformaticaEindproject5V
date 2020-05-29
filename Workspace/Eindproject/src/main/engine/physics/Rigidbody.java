@@ -9,6 +9,7 @@ public class Rigidbody {
 	float mass;
 	
 	private static final float MAX_VELOCITY = 7f;
+	public static Vector3 Fz = new Vector3(), zwaartekracht = new Vector3(), jump = new Vector3(), forces = new Vector3();
 	
 	public Rigidbody() {
 		this.mass = 1.0f;
@@ -40,7 +41,7 @@ public class Rigidbody {
 		
 
 	}
-	public static void applyGravity(Camera camera) {
+	public static Vector3 applyGravity(Camera camera) {
 //		if (obj.position.y > 0.1f) {
 //			if(Math.abs(camera.speed.y) < MAX_VELOCITY)
 //				camera.speed.y = (float) (-1*mass*Time.deltaTime + camera.speed.y);
@@ -53,15 +54,28 @@ public class Rigidbody {
 		if (camera.position.y > 3f) {
 			camera.valtijd += Time.deltaTime;
 			if(Math.abs(camera.speed.y) < MAX_VELOCITY)
-				camera.speed.y = (float) (-1*camera.mass*camera.valtijd);
-			if ((camera.position.y + camera.speed.y) > 0) 
-				camera.position = Vector3.add(camera.position, new Vector3(0, camera.speed.y, 0));
-			else
-				camera.position = Vector3.add(camera.position, new Vector3(0, -(camera.position.y)+0.1f, 0));
+				Fz.y = (float) (-1*camera.mass*camera.valtijd);
+//			if ((camera.position.y + camera.speed.y) > 0) 
+//				camera.position = Vector3.add(camera.position, new Vector3(0, camera.speed.y, 0));
+//			else
+//				camera.position = Vector3.add(camera.position, new Vector3(0, -(camera.position.y)+0.1f, 0));
 		}
 		else
 			camera.valtijd = 0;
-		
+		return Fz;
 
+	}
+	public static void applyForces(Camera camera) {
+		zwaartekracht = applyGravity(camera);
+		jump = camera.speed;
+		forces = Vector3.subtract(jump, zwaartekracht);
+		camera.speed = Vector3.add(camera.speed,  forces);
+		System.out.println(forces.y);
+		camera.position = Vector3.add(camera.position, forces);
+		if (camera.position.y <= 0)
+			camera.position.y = 0;
+		
+		
+		
 	}
 }
