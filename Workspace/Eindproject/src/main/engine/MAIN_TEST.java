@@ -82,9 +82,11 @@ public class MAIN_TEST {
 	// -5), new Vector3());
 	public static PlayerCamera camera = new PlayerCamera(new Vector3(0, 3, 5), new Vector3());
 	public static SkyboxRenderer skyboxRenderer;
-	
+
 	public static void main(String[] args) {
 		//float schaal1 = 1;
+		Box skyBox = new Box(new Vector3(), new Vector3(), new Vector3(500), 0, new Vector3(), false);
+		
 		//float schaal2 = 0.01f;
 		//float schaal0 = 0.01f;
 		skyboxRenderer = new SkyboxRenderer();
@@ -194,7 +196,7 @@ public class MAIN_TEST {
 			renderer.processGameObject(box);
 			renderer.processGameObject(player);
 		
-			renderer.render(camera, sunPos);
+			renderer.render(camera, sunPos, skyBox);
 			window.swapBuffers();
 //			for (int b = 0; b < allCollider.length; b++)
 //				System.out.println(allCollider[b].getClass());

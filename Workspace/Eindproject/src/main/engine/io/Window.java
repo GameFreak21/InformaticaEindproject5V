@@ -66,9 +66,9 @@ public class Window {
 		
 		GL31.glEnable(GL31.GL_DEPTH_TEST);
 		
-		GL31.glEnable(GL31.GL_CULL_FACE);
-		GL31.glFrontFace(GL31.GL_CCW);
-		GL31.glCullFace(GL31.GL_BACK);
+		//GL31.glEnable(GL31.GL_CULL_FACE);
+		//GL31.glFrontFace(GL31.GL_CCW);
+		//GL31.glCullFace(GL31.GL_BACK);
 		
 		
 		createCallbacks();
