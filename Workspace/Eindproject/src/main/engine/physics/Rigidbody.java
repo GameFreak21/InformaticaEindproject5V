@@ -56,37 +56,46 @@ public class Rigidbody {
 			if (camera.position.y > 2f) {
 				camera.valtijd += Time.deltaTime;
 				if(Math.abs(camera.speed.y) < MAX_VELOCITY)
-					Fz.y = (float) (-2*camera.mass*camera.valtijd);
-				if (camera.position.y + Fz.y < 0)
-					Fz.y = 0.1f;
-				floor = false;
+					Fz.y = (float) (-1f*camera.mass*camera.valtijd);
+//				if (camera.position.y + Fz.y < 2)
+//					Fz.y = 0.1f;
+				//floor = false;
 			}
 			else {
 				camera.valtijd = 0;
-				floor = true;
+				gravityCollide = true;
 			}
 			if ((Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, Vector3.add(camera.position, Fz), Collider.allGameObjectPositions)) || (Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, new Vector3(camera.position.x, camera.position.y - 1, camera.position.z), Collider.allGameObjectPositions))) {
-				floor = true;
 				Fz = new Vector3();
 				gravityCollide = true;
 			}
-			else 
-				gravityCollide = false;
+//			else 
+//				gravityCollide = false;
 			
 			return Fz;
 
 	}
 	public static void applyForces(Camera camera) {
-		zwaartekracht = new Vector3();
-		jump = new Vector3();
-		forces = new Vector3();
+//		zwaartekracht = new Vector3();
+//		jump = new Vector3();
+//		forces = new Vector3();
+//		zwaartekracht = applyGravity(camera);
+//		jump = camera.speed;
+//		forces = Vector3.add(jump, zwaartekracht);
+//		camera.speed = Vector3.add(camera.speed,  forces);
+//		camera.position = Vector3.add(camera.position, forces);
+//		if (camera.position.y <= 0)
+//			camera.position.y = 0;
 		zwaartekracht = applyGravity(camera);
+//		System.out.println(zwaartekracht.y);
 		jump = camera.speed;
-		forces = Vector3.subtract(jump, zwaartekracht);
-		camera.speed = Vector3.add(camera.speed,  forces);
-		camera.position = Vector3.add(camera.position, forces);
-		if (camera.position.y <= 0)
-			camera.position.y = 0;
+		jump.y =camera.speed.y * (float) Time.deltaTime;
+		System.out.println("jump.y " + jump.y);
+		forces = new Vector3();
+		forces.y = (jump.y + zwaartekracht.y);
+		System.out.println(forces.y);
+		if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, new Vector3(camera.position.x, ((camera.position.y - 1f) + forces.y), camera.position.z), Collider.allGameObjectPositions))
+			camera.position.y += forces.y;
 		
 		
 		
