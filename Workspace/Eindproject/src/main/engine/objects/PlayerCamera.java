@@ -70,17 +70,13 @@ public class PlayerCamera extends Camera {
 					position = Vector3.add(position, new Vector3(z, 0, -x));
 
 				
-//				if (Rigidbody.gravityCollide)
-//					Rigidbody.floor = true;
-				System.out.println("floor " + Rigidbody.floor);
 				//JUMPING @ GRAVITY ETC
 				
 				if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) {
 					
 					if (Rigidbody.gravityCollide) {							//checken of je niet vanuit de lucht afzet				
 						this.speed.y = 300;
-						//Rigidbody.applyForces(this);
-						//this.speed.y = 0;
+						Rigidbody.applyForces(this);
 					}
 					//position = Vector3.add(position, new Vector3(0, (float) (moveSpeed * Time.deltaTime), 0));
 				}	
@@ -108,7 +104,7 @@ public class PlayerCamera extends Camera {
 				Rigidbody.applyForces(this);
 			MAIN_TEST.player.position = new Vector3(position.x, position.y - 3, position.z);
 //			System.out.println("camera.x " + position.x);
-			System.out.println("camera.y " + position.y);
+//			System.out.println("camera.y " + position.y);
 //			System.out.println("camera.z " + position.z);
 		}
 	

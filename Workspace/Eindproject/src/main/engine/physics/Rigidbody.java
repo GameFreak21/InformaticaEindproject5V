@@ -90,13 +90,14 @@ public class Rigidbody {
 //		System.out.println(zwaartekracht.y);
 		jump = camera.speed;
 		jump.y =camera.speed.y * (float) Time.deltaTime;
-		System.out.println("jump.y " + jump.y);
+//		System.out.println("jump.y " + jump.y);
 		forces = new Vector3();
 		forces.y = (jump.y + zwaartekracht.y);
 		System.out.println(forces.y);
 		if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, new Vector3(camera.position.x, ((camera.position.y - 1f) + forces.y), camera.position.z), Collider.allGameObjectPositions))
 			camera.position.y += forces.y;
-		
+		else
+			gravityCollide = true;
 		
 		
 	}
