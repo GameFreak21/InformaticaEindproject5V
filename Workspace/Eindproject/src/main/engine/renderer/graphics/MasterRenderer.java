@@ -19,19 +19,19 @@ public class MasterRenderer {
 	private StaticShader shader;
 	private Renderer renderer;
 	private Window window;
-	private SkyboxShader skyboxShader;
+//	private SkyboxShader skyboxShader;
 	private int a = 0;
 	
 	public MasterRenderer(Window window) {
 		this.window = window;
 		this.shader = new StaticShader();
-		this.skyboxShader = new SkyboxShader();
-		this.renderer = new Renderer(shader, skyboxShader);
+//		this.skyboxShader = new SkyboxShader();
+		this.renderer = new Renderer(shader);
 	}
 	
 	private Map<Mesh,List<GameObject>> gameObjects = new HashMap<Mesh, List<GameObject>>();
 	
-	public void render(Camera camera, Vector3 sun, GameObject skybox) {
+	public void render(Camera camera, Vector3 sun) {
 		
 		//skyboxRenderer.render(camera, window);
 		shader.bind();
@@ -43,14 +43,14 @@ public class MasterRenderer {
 		
 		shader.unbind();
 
-		skyboxShader.bind();
-		
-		skyboxShader.SetUniform("projection", window.projectionMat);
-		skyboxShader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
-		
-		renderer.renderSkybox(skybox);
-		
-		skyboxShader.unbind();
+//		skyboxShader.bind();
+//		
+//		skyboxShader.SetUniform("projection", window.projectionMat);
+//		skyboxShader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
+//		
+//		renderer.renderSkybox(skybox);
+//		
+//		skyboxShader.unbind();
 		gameObjects.clear();
 	}
 	
