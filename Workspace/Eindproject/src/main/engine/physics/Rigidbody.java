@@ -11,6 +11,8 @@ public class Rigidbody {
 
 	private static final float MAX_VELOCITY = 70f;
 	private static final float GRAVITY = -10;
+	private static final float AIR_RESISTANCE = -1;
+	private static final float GROUND_RESISTANCE = -1;
 	
 	public static Vector3 Fz = new Vector3(), zwaartekracht = new Vector3(), jump = new Vector3(),
 			forces = new Vector3();
@@ -100,8 +102,8 @@ public class Rigidbody {
 ////		System.out.println("jump.y " + jump.y);
 //		forces = new Vector3();
 //		forces.y = (jump.y + zwaartekracht.y);
-
 		camera.speed.y += zwaartekracht.y;
+//		camera.speed = Vector3.add(camera.speed,  zwaartekracht);
 //		if(camera.speed.y < 0)
 //			camera.speed.y = 0;
 
@@ -119,6 +121,61 @@ public class Rigidbody {
 			camera.speed.y = 0;
 			gravityCollide = true;
 		}
+		if (gravityCollide) {
+			//misschien checken of niet tegengesteld beweegt?
+			if (camera.speed.x < 0) {
+				camera.speed.x -= GROUND_RESISTANCE;
+				if (camera.speed.x > 0)
+					camera.speed.x = 0;
+				camera.position.x += camera.speed.x * (float) Time.deltaTime;
+			}
+			else if (camera.speed.x > 0) {
+				camera.speed.x += GROUND_RESISTANCE;
+				if (camera.speed.x < 0)
+					camera.speed.x = 0;
+				camera.position.x += camera.speed.x * (float) Time.deltaTime;
+			}
+			if (camera.speed.z < 0) {
+				camera.speed.z -= GROUND_RESISTANCE;
+				if (camera.speed.z > 0)
+					camera.speed.z = 0;
+				camera.position.z += camera.speed.z * (float) Time.deltaTime;
+			}
+			else if (camera.speed.z > 0) {
+				camera.speed.z += GROUND_RESISTANCE;
+				if (camera.speed.z < 0)
+					camera.speed.z = 0;
+				camera.position.z += camera.speed.z * (float) Time.deltaTime;
+			}
+		}
+		if (!gravityCollide) {
+			//misschien checken of niet tegengesteld beweegt?
+			if (camera.speed.x < 0) {
+				camera.speed.x -= AIR_RESISTANCE;
+				if (camera.speed.x > 0)
+					camera.speed.x = 0;
+				camera.position.x += camera.speed.x * (float) Time.deltaTime;
+			}
+			else if (camera.speed.x > 0) {
+				camera.speed.x += AIR_RESISTANCE;
+				if (camera.speed.x < 0)
+					camera.speed.x = 0;
+				camera.position.x += camera.speed.x * (float) Time.deltaTime;
+			}
+			if (camera.speed.z < 0) {
+				camera.speed.z -= AIR_RESISTANCE;
+				if (camera.speed.z > 0)
+					camera.speed.z = 0;
+				camera.position.z += camera.speed.z * (float) Time.deltaTime;
+			}
+			else if (camera.speed.z > 0) {
+				camera.speed.z += AIR_RESISTANCE;
+				if (camera.speed.z < 0)
+					camera.speed.z = 0;
+				camera.position.z += camera.speed.z * (float) Time.deltaTime;
+			}
+		}
+		
 
 	}
 }

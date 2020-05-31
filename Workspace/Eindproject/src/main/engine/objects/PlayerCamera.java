@@ -62,23 +62,32 @@ public class PlayerCamera extends Camera {
 				oldPosition = position;
 				doubleChecker = 0;
 				tempPos = position;
-				// if (Rigidbody.gravityCollide) {
-				if (Input.keyDown(GLFW.GLFW_KEY_A))
+				if (Rigidbody.gravityCollide) {
+				if (Input.keyDown(GLFW.GLFW_KEY_A)) { 
 					tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
-				if (Input.keyDown(GLFW.GLFW_KEY_D))
+					System.out.println(x);
+					this.speed = Vector3.add(this.speed, new Vector3(-x*10, 0, -z*100));
+					Rigidbody.applyForces(this);
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_D)) {
 					tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
-				if (Input.keyDown(GLFW.GLFW_KEY_S))
+					this.speed = Vector3.add(this.speed, new Vector3(x, 0, z));
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_S)) {
 					tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
-				if (Input.keyDown(GLFW.GLFW_KEY_W))
+					this.speed = Vector3.add(this.speed, new Vector3(-z, 0, x));
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_W)) {
 					tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
-				// }
+					this.speed = Vector3.add(this.speed,  new Vector3(z, 0, -x));
+				}
 
 				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
 						new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
-					position = tempPos;
+					//position = tempPos;
 				}
 				// JUMPING @ GRAVITY ETC
-
+				}
 				if (Input.keyDown(GLFW.GLFW_KEY_SPACE)) {
 
 					if (Rigidbody.gravityCollide) { // checken of je niet vanuit de lucht afzet
