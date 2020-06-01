@@ -33,7 +33,7 @@ public class Window {
 		this.name = name;
 		this.width = width;
 		this.height = height;
-		this.bgColor = new Vector3(0.0f, 148/255f, 212/255f);
+		this.bgColor = new Vector3(1.0f, 0.4f, 0.4f);
 		projectionMat = Matrix.projection((float) width / (float) height, fov, near, far);
 		this.create();
 	}
@@ -66,9 +66,9 @@ public class Window {
 		
 		GL31.glEnable(GL31.GL_DEPTH_TEST);
 		
-		GL31.glEnable(GL31.GL_CULL_FACE);
-		GL31.glFrontFace(GL31.GL_CCW);
-		GL31.glCullFace(GL31.GL_BACK);
+		//GL31.glEnable(GL31.GL_CULL_FACE);
+		//GL31.glFrontFace(GL31.GL_CCW);
+		//GL31.glCullFace(GL31.GL_BACK);
 		
 		
 		createCallbacks();
