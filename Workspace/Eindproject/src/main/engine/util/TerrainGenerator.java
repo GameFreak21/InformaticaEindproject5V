@@ -1,10 +1,5 @@
 package main.engine.util;
 
-import main.engine.math.Vector3;
-import main.engine.renderer.primitives.Plane;
-import main.engine.renderer.graphics.Renderer;
-import main.engine.MAIN_TEST;
-
 public class TerrainGenerator {
 //	public static void GenerateTerrain() {
 //		Plane[] planes = new Plane[100];
