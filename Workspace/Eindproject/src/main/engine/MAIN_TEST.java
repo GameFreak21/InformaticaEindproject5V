@@ -81,15 +81,15 @@ public class MAIN_TEST {
 	// public static PlayerCamera PlayerCamera = new PlayerCamera(new Vector3(0, 0,
 	// -5), new Vector3());
 	public static PlayerCamera camera = new PlayerCamera(new Vector3(0.5f, 4, 0), new Vector3());
-	public static SkyboxRenderer skyboxRenderer;
+//	public static SkyboxRenderer skyboxRenderer;
 
 	public static void main(String[] args) {
 		//float schaal1 = 1;
-		Box skyBox = new Box(new Vector3(), new Vector3(), new Vector3(500), 0, new Vector3(), false);
+//		Box skyBox = new Box(new Vector3(), new Vector3(), new Vector3(500), 0, new Vector3(), false);
 		
 		//float schaal2 = 0.01f;
 		//float schaal0 = 0.01f;
-		skyboxRenderer = new SkyboxRenderer();
+//		skyboxRenderer = new SkyboxRenderer();
 //		Rigidbody body = new Rigidbody();
 		MasterRenderer renderer = new MasterRenderer(window);
 		//player = new GameObject(new Vector3(-2f, 0, 0), new Vector3(0, 0, 1), new
@@ -194,9 +194,9 @@ public class MAIN_TEST {
 
 //			renderer.processGameObject(pika);
 			renderer.processGameObject(box);
-			renderer.processGameObject(player);
+//			renderer.processGameObject(player);
 		
-			renderer.render(camera, sunPos, skyBox);
+			renderer.render(camera, sunPos);
 			window.swapBuffers();
 //			for (int b = 0; b < allCollider.length; b++)
 //				System.out.println(allCollider[b].getClass());
