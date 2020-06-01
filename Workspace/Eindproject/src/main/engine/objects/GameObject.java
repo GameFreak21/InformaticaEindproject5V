@@ -2,7 +2,6 @@ package main.engine.objects;
 
 import org.lwjgl.glfw.GLFW;
 
-import main.engine.MAIN_TEST;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.physics.Collider;
@@ -30,9 +29,9 @@ public class GameObject extends Rigidbody {
 		this.speed = speed;
 		this.valtijd = Time.Time;
 		this.collisions = collisions;
-		if (collisions) {
+		if (collisions) 
 			Collider.CreateCollider(this.mesh.positionData, this.scale, this.position);
-			System.out.println("created!");}
+			
 		
 //		if ((this.scale.x == 0.5f) && (this.scale.y == 2) && (this.scale.z == 0.5f)) { 
 //			 float a = 0f;

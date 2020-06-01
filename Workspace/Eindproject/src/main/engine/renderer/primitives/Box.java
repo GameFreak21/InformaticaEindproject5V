@@ -11,7 +11,7 @@ import main.engine.objects.GameObject;
 
 public class Box extends GameObject{
 
-	public static Mesh _mesh = new Mesh(
+	public static Mesh box_mesh = new Mesh(
 			new Vertex[] { 
 					//front
 					new Vertex(new Vector3(-0.5f, 1, -0.5f), new Vector3(), new Vector3(1.0f, 0.0f, 0.0f), new Vector2(1,1)),	//rechtsboven	
@@ -75,7 +75,7 @@ public class Box extends GameObject{
 				}, new Material("resources/textures/creeperhead.png"));
 	
 	public Box(Vector3 position, Vector3 rotation, Vector3 scale, float mass, Vector3 speed, boolean collisions) {
-		super(position, rotation, scale, _mesh, mass, speed, collisions);
+		super(position, rotation, scale, box_mesh, mass, speed, collisions);
 	}
 	
 	boolean flip = false;

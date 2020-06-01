@@ -1,10 +1,10 @@
 package main.engine.physics;
 
-import main.engine.MAIN_TEST;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.objects.Camera;
 import main.engine.objects.GameObject;
+import main.game.MAIN_GAME;
 
 public class Rigidbody {
 	float mass;
@@ -67,9 +67,9 @@ public class Rigidbody {
 			camera.valtijd = 0;
 			gravityCollide = true;
 		}
-		if ((Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider, Vector3.add(camera.position, Fz),
+		if ((Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider, Vector3.add(camera.position, Fz),
 				Collider.allGameObjectPositions))
-				|| (Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+				|| (Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 						new Vector3(camera.position.x, camera.position.y - 1, camera.position.z),
 						Collider.allGameObjectPositions))) {
 			Fz = new Vector3();
@@ -106,7 +106,7 @@ public class Rigidbody {
 //			camera.speed.y = 0;
 
 		// System.out.println(forces.y);
-		if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+		if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 				new Vector3(camera.position.x, ((camera.position.y - 1f) + forces.y), camera.position.z),
 				Collider.allGameObjectPositions)) {
 			if (camera.position.y + camera.speed.y * (float) Time.deltaTime > 2f)

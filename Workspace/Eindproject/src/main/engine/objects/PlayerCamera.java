@@ -2,12 +2,12 @@ package main.engine.objects;
 
 import org.lwjgl.glfw.GLFW;
 
-import main.engine.MAIN_TEST;
 import main.engine.io.Input;
 import main.engine.math.Time;
 import main.engine.math.Vector3;
 import main.engine.physics.Collider;
 import main.engine.physics.Rigidbody;
+import main.game.MAIN_GAME;
 
 public class PlayerCamera extends Camera {
 	private float oldMouseX, oldMouseY;
@@ -52,13 +52,13 @@ public class PlayerCamera extends Camera {
 			float x = (float) (Math.cos(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
 			float z = (float) (Math.sin(Math.toRadians(rotation.y)) * moveSpeed * Time.deltaTime);
 			// System.out.println(position.z);
-			System.out.println("collision " + Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
-					new Vector3(position.x, position.y - 1, position.z), Collider.allGameObjectPositions));
-			System.out.println("collide " + Rigidbody.gravityCollide);
+//			System.out.println("collision " + Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+//					new Vector3(position.x, position.y - 1, position.z), Collider.allGameObjectPositions));
+//			System.out.println("collide " + Rigidbody.gravityCollide);
 
 			Vector3 tempPos = new Vector3();
 
-			if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+			if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 					new Vector3(position.x, position.y - 1, position.z), Collider.allGameObjectPositions)) {
 				oldPosition = position;
 				doubleChecker = 0;
@@ -81,15 +81,16 @@ public class PlayerCamera extends Camera {
 					tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
 					lastKey = GLFW.GLFW_KEY_W;
 				}
+				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 
+					lastKey = GLFW.GLFW_KEY_LEFT_SHIFT;
 				// }
 
-				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+				if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 						new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
 					position = tempPos;
 				}
 				}
 				else {
-					System.out.println(lastKey);
 					if (lastKey == GLFW.GLFW_KEY_A) 
 						tempPos = Vector3.add(tempPos,  new Vector3(-x, 0, -z));
 					else if (lastKey == GLFW.GLFW_KEY_D)
@@ -97,8 +98,8 @@ public class PlayerCamera extends Camera {
 					else if (lastKey == GLFW.GLFW_KEY_S)
 						tempPos = Vector3.add(tempPos,  new Vector3(-z, 0, x));
 					else if (lastKey == GLFW.GLFW_KEY_W)
-						tempPos = Vector3.add(tempPos,  new Vector3(z, 0, -x));
-					if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+						tempPos = Vector3.add(tempPos,  new Vector3(z * 0.5f, 0, -x*0.5f));
+					if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 							new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
 						position = tempPos;
 					}
@@ -109,7 +110,7 @@ public class PlayerCamera extends Camera {
 
 					if (Rigidbody.gravityCollide) { // checken of je niet vanuit de lucht afzet
 						Rigidbody.gravityCollide = false;
-						this.speed.y = 15;
+						this.speed.y = 10;
 						Rigidbody.applyForces(this);
 					}
 					// position = Vector3.add(position, new Vector3(0, (float) (moveSpeed *
@@ -127,7 +128,7 @@ public class PlayerCamera extends Camera {
 				position = oldPosition;
 				doubleChecker++;
 			}
-			if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+			if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 					new Vector3(position.x, position.y - 2, position.z), Collider.allGameObjectPositions))
 				Rigidbody.gravityCollide = false;
 			if (doubleChecker > 1) {
@@ -139,7 +140,7 @@ public class PlayerCamera extends Camera {
 //			System.out.println(Rigidbody.applyGravity(this).y);
 			if (!Rigidbody.gravityCollide)
 				Rigidbody.applyForces(this);
-			MAIN_TEST.player.position = new Vector3(position.x, position.y - 3, position.z);
+			MAIN_GAME.player.position = new Vector3(position.x, position.y - 3, position.z);
 //			System.out.println("camera.x " + position.x);
 //			System.out.println("camera.y " + position.y);
 //			System.out.println("camera.z " + position.z);
