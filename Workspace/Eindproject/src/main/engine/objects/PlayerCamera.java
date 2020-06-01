@@ -14,6 +14,7 @@ public class PlayerCamera extends Camera {
 	private float moveSpeed = 10f, sensitivity = 0.15f;
 	private Vector3 oldPosition = new Vector3();
 	private int doubleChecker = 0;
+	private int lastKey;
 
 	public PlayerCamera(Vector3 position, Vector3 rotation) {
 		super(position, rotation);
@@ -62,20 +63,45 @@ public class PlayerCamera extends Camera {
 				oldPosition = position;
 				doubleChecker = 0;
 				tempPos = position;
-				// if (Rigidbody.gravityCollide) {
-				if (Input.keyDown(GLFW.GLFW_KEY_A))
+
+				if (Rigidbody.gravityCollide) {
+				if (Input.keyDown(GLFW.GLFW_KEY_A)) {
 					tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
-				if (Input.keyDown(GLFW.GLFW_KEY_D))
+					lastKey = GLFW.GLFW_KEY_A;
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_D)) {
 					tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
-				if (Input.keyDown(GLFW.GLFW_KEY_S))
+					lastKey = GLFW.GLFW_KEY_D;
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_S)) {
 					tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
-				if (Input.keyDown(GLFW.GLFW_KEY_W))
+					lastKey = GLFW.GLFW_KEY_S;
+				}
+				if (Input.keyDown(GLFW.GLFW_KEY_W)) {
 					tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
+					lastKey = GLFW.GLFW_KEY_W;
+				}
 				// }
 
 				if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
 						new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
 					position = tempPos;
+				}
+				}
+				else {
+					System.out.println(lastKey);
+					if (lastKey == GLFW.GLFW_KEY_A) 
+						tempPos = Vector3.add(tempPos,  new Vector3(-x, 0, -z));
+					else if (lastKey == GLFW.GLFW_KEY_D)
+						tempPos = Vector3.add(tempPos,  new Vector3(x, 0, z));
+					else if (lastKey == GLFW.GLFW_KEY_S)
+						tempPos = Vector3.add(tempPos,  new Vector3(-z, 0, x));
+					else if (lastKey == GLFW.GLFW_KEY_W)
+						tempPos = Vector3.add(tempPos,  new Vector3(z, 0, -x));
+					if (!Collider.CheckCollision(MAIN_TEST.playerCollider, Collider.allCollider,
+							new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
+						position = tempPos;
+					}
 				}
 				// JUMPING @ GRAVITY ETC
 
@@ -96,7 +122,8 @@ public class PlayerCamera extends Camera {
 //				if (Input.keyDown(GLFW.GLFW_KEY_A) || Input.keyDown(GLFW.GLFW_KEY_D) || Input.keyDown(GLFW.GLFW_KEY_S) || Input.keyDown(GLFW.GLFW_KEY_W) || Input.keyDown(GLFW.GLFW_KEY_SPACE))
 //					Rigidbody.gravityCollide = false;
 
-			} else {
+			} 
+			else {
 				position = oldPosition;
 				doubleChecker++;
 			}
