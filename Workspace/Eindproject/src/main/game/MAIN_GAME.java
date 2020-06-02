@@ -1,7 +1,5 @@
 package main.game;
 
-import java.util.ArrayList;
-
 import org.lwjgl.glfw.GLFW;
 
 import main.engine.io.Input;

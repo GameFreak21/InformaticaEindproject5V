@@ -72,7 +72,7 @@ public class Box extends GameObject{
 					//top
 					22, 20, 21,
 					22, 21, 23,
-				}, new Material("resources/textures/creeperhead.png"));
+				}, new Material("resources/textures/box.jpg"));
 	
 	public Box(Vector3 position, Vector3 rotation, Vector3 scale, float mass, Vector3 speed, boolean collisions) {
 		super(position, rotation, scale, box_mesh, mass, speed, collisions);

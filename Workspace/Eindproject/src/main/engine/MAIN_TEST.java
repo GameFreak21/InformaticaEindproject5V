@@ -96,7 +96,7 @@ public class MAIN_TEST {
 		// Vector3(schaal0), ModelLoader.LoadModel("resources/Models/IronMan.obj",
 		// "resources/textures/p.png"));
 		Box lightBox = new Box(sunPos, new Vector3(), new Vector3(0.3f), 1.0f, new Vector3(), false);
-		box = new Box(new Vector3(0.5f, 1, 0), new Vector3(), new Vector3(0.5f, 0.5f, 0.5f), 1.0f, new Vector3(), true);
+		box = new Box(new Vector3(0.5f, 1, 0), new Vector3(), new Vector3(5), 1.0f, new Vector3(), true);
 		player = new Box(new Vector3(10, 11, 12), new Vector3(), new Vector3(0.5f, 2, 0.5f), 0.0f, new Vector3(), false);
 //		pika = new GameObject(new Vector3(0.5f, 0.5f, 0.5f), new Vector3(0, 0, 1), new Vector3(schaal1),
 //				ModelLoader.LoadModel("resources/Models/PenguinBaseMesh.obj", "resources/textures/p.png"), 1.0f, new Vector3());
