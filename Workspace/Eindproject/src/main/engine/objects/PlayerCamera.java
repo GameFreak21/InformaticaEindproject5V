@@ -30,7 +30,7 @@ public class PlayerCamera extends Camera {
 
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
-		
+
 		timer += Time.deltaTime;
 
 		this.valtijd = Time.deltaTime;
@@ -68,49 +68,48 @@ public class PlayerCamera extends Camera {
 				tempPos = position;
 
 				if (Rigidbody.gravityCollide) {
-				if (Input.keyDown(GLFW.GLFW_KEY_A)) {
-					tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
-					lastKey = GLFW.GLFW_KEY_A;
-					timer = 0;
-				}
-				if (Input.keyDown(GLFW.GLFW_KEY_D)) {
-					tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
-					lastKey = GLFW.GLFW_KEY_D;
-					timer = 0;
-				}
-				if (Input.keyDown(GLFW.GLFW_KEY_S)) {
-					tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
-					lastKey = GLFW.GLFW_KEY_S;
-					timer = 0;
-				}
-				if (Input.keyDown(GLFW.GLFW_KEY_W)) {
-					tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
-					lastKey = GLFW.GLFW_KEY_W;
-					timer = 0;
-				}
+					if (Input.keyDown(GLFW.GLFW_KEY_A)) {
+						tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
+						lastKey = GLFW.GLFW_KEY_A;
+						timer = 0;
+					}
+					if (Input.keyDown(GLFW.GLFW_KEY_D)) {
+						tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
+						lastKey = GLFW.GLFW_KEY_D;
+						timer = 0;
+					}
+					if (Input.keyDown(GLFW.GLFW_KEY_S)) {
+						tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
+						lastKey = GLFW.GLFW_KEY_S;
+						timer = 0;
+					}
+					if (Input.keyDown(GLFW.GLFW_KEY_W)) {
+						tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
+						lastKey = GLFW.GLFW_KEY_W;
+						timer = 0;
+					}
 //				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 
 //					lastKey = GLFW.GLFW_KEY_LEFT_SHIFT;
-				// }
+					// }
 
-				if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
-						new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
-					position = tempPos;
-				}
-				}
-				else {
-					if (timer < 0.5f) {
-					if (lastKey == GLFW.GLFW_KEY_A) 
-						tempPos = Vector3.add(tempPos,  new Vector3(-x, 0, -z));
-					else if (lastKey == GLFW.GLFW_KEY_D)
-						tempPos = Vector3.add(tempPos,  new Vector3(x, 0, z));
-					else if (lastKey == GLFW.GLFW_KEY_S)
-						tempPos = Vector3.add(tempPos,  new Vector3(-z, 0, x));
-					else if (lastKey == GLFW.GLFW_KEY_W)
-						tempPos = Vector3.add(tempPos,  new Vector3(z * 0.5f, 0, -x*0.5f));
 					if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 							new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
 						position = tempPos;
 					}
+				} else {
+					if (timer < 1f) {
+						if (lastKey == GLFW.GLFW_KEY_A)
+							tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
+						else if (lastKey == GLFW.GLFW_KEY_D)
+							tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
+						else if (lastKey == GLFW.GLFW_KEY_S)
+							tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
+						else if (lastKey == GLFW.GLFW_KEY_W)
+							tempPos = Vector3.add(tempPos, new Vector3(z * 0.5f, 0, -x * 0.5f));
+						if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
+								new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
+							position = tempPos;
+						}
 					}
 				}
 				// JUMPING @ GRAVITY ETC
@@ -132,8 +131,7 @@ public class PlayerCamera extends Camera {
 //				if (Input.keyDown(GLFW.GLFW_KEY_A) || Input.keyDown(GLFW.GLFW_KEY_D) || Input.keyDown(GLFW.GLFW_KEY_S) || Input.keyDown(GLFW.GLFW_KEY_W) || Input.keyDown(GLFW.GLFW_KEY_SPACE))
 //					Rigidbody.gravityCollide = false;
 
-			} 
-			else {
+			} else {
 				position = oldPosition;
 				doubleChecker++;
 			}
