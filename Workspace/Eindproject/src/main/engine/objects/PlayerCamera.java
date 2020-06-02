@@ -15,6 +15,7 @@ public class PlayerCamera extends Camera {
 	private Vector3 oldPosition = new Vector3();
 	private int doubleChecker = 0;
 	private int lastKey;
+	private float timer;
 
 	public PlayerCamera(Vector3 position, Vector3 rotation) {
 		super(position, rotation);
@@ -29,6 +30,8 @@ public class PlayerCamera extends Camera {
 
 		oldMouseX = (float) Input.mouseX;
 		oldMouseY = (float) Input.mouseY;
+		
+		timer += Time.deltaTime;
 
 		this.valtijd = Time.deltaTime;
 		if (!lockCam) {
@@ -68,21 +71,25 @@ public class PlayerCamera extends Camera {
 				if (Input.keyDown(GLFW.GLFW_KEY_A)) {
 					tempPos = Vector3.add(tempPos, new Vector3(-x, 0, -z));
 					lastKey = GLFW.GLFW_KEY_A;
+					timer = 0;
 				}
 				if (Input.keyDown(GLFW.GLFW_KEY_D)) {
 					tempPos = Vector3.add(tempPos, new Vector3(x, 0, z));
 					lastKey = GLFW.GLFW_KEY_D;
+					timer = 0;
 				}
 				if (Input.keyDown(GLFW.GLFW_KEY_S)) {
 					tempPos = Vector3.add(tempPos, new Vector3(-z, 0, x));
 					lastKey = GLFW.GLFW_KEY_S;
+					timer = 0;
 				}
 				if (Input.keyDown(GLFW.GLFW_KEY_W)) {
 					tempPos = Vector3.add(tempPos, new Vector3(z, 0, -x));
 					lastKey = GLFW.GLFW_KEY_W;
+					timer = 0;
 				}
-				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 
-					lastKey = GLFW.GLFW_KEY_LEFT_SHIFT;
+//				if (Input.keyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) 
+//					lastKey = GLFW.GLFW_KEY_LEFT_SHIFT;
 				// }
 
 				if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
@@ -91,6 +98,7 @@ public class PlayerCamera extends Camera {
 				}
 				}
 				else {
+					if (timer < 0.5f) {
 					if (lastKey == GLFW.GLFW_KEY_A) 
 						tempPos = Vector3.add(tempPos,  new Vector3(-x, 0, -z));
 					else if (lastKey == GLFW.GLFW_KEY_D)
@@ -102,6 +110,7 @@ public class PlayerCamera extends Camera {
 					if (!Collider.CheckCollision(MAIN_GAME.playerCollider, Collider.allCollider,
 							new Vector3(tempPos.x, tempPos.y - 1, tempPos.z), Collider.allGameObjectPositions)) {
 						position = tempPos;
+					}
 					}
 				}
 				// JUMPING @ GRAVITY ETC
