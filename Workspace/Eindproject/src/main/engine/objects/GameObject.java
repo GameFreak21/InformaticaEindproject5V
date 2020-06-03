@@ -33,32 +33,8 @@ public class GameObject extends Rigidbody {
 			Collider.CreateCollider(this.mesh.positionData, this.scale, this.position);
 			
 		
-//		if ((this.scale.x == 0.5f) && (this.scale.y == 2) && (this.scale.z == 0.5f)) { 
-//			 float a = 0f;
-////			System.out.println("1 == true");
-//		}
-//		else if (this.mesh == MAIN_TEST.planeMesh) {
-//			float a = 0f;
-////			System.out.println("2 == true");
-//		}
-//		else if (this.scale.x == 500f) {
-//			float a = 0f;
-//		}
-//		else {
-//			System.out.println("3 == true");
-//			Collider.CreateCollider(GameObject.this);}
-	}
-	// temp voor test
-	public void update() {
-		time = GLFW.glfwGetTime();
 
-		// position.x = (float) Math.sin(time)/2.0f;
-		rotation = new Vector3(0, (float) time * 60, (float) time * 20);
-		// scale = new Vector3((float) Math.sin(time), (float) Math.sin(time), (float)
-		// Math.sin(time));
 	}
-//	
-//	public void destroy() {
-//		this.mesh.destroy();
-//	}
+	public void update() {
+	}
 }
