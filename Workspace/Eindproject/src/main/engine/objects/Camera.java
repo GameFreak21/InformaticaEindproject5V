@@ -36,7 +36,7 @@ public class Camera {
 				moveSpeed = 1f;
 			}
 
-			if (rotation.x <= (90f - dy) && rotation.x >= (-90f - dy))
+			if (rotation.x <= (90f - dy) && rotation.x >= (-90f - dy))								// niet je nek breken
 				rotation = Vector3.add(rotation, new Vector3(dy * sensitivity, 0, 0));
 			else if (rotation.x > (90f - dy))
 				rotation.x = 90f;
@@ -47,7 +47,7 @@ public class Camera {
 			float y = (float) (Math.sin(Math.toRadians(rotation.x)) * moveSpeed * Time.deltaTime);
 			float sY = (float) (Math.cos(Math.toRadians(rotation.x)) * moveSpeed);
 
-			float x = (float) (Math.cos(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
+			float x = (float) (Math.cos(Math.toRadians(rotation.y)) * sY * Time.deltaTime);			//driehoeksberekeningen
 			float z = (float) (Math.sin(Math.toRadians(rotation.y)) * sY * Time.deltaTime);
 
 			if (Input.keyDown(GLFW.GLFW_KEY_A))
