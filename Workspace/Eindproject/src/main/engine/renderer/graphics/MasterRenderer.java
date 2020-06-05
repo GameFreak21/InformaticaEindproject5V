@@ -55,13 +55,6 @@ public class MasterRenderer {
 	
 	public void processGameObject(GameObject object) {
 		Mesh mesh = object.mesh;
-//		System.out.println("call");
-//		Collider.CreateCollider(object.mesh.positionData, object.scale);
-//		MAIN_TEST.allGameObjectpositions[a] = object.position;
-//		if (a < 1602)
-//			a++;
-//		else 
-//			a = 0;
 		List<GameObject> batch = gameObjects.get(mesh);
 		if(batch!=null) {
 			batch.add(object);
