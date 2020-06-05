@@ -24,7 +24,6 @@ public class MasterRenderer {
 	public MasterRenderer(Window window) {
 		this.window = window;
 		this.shader = new StaticShader();
-//		this.skyboxShader = new SkyboxShader();
 		this.renderer = new Renderer(shader);
 	}
 	
@@ -32,7 +31,6 @@ public class MasterRenderer {
 	
 	public void render(Camera camera, Vector3 sun) {
 		
-		//skyboxRenderer.render(camera, window);
 		shader.bind();
 		shader.SetUniform("projection", window.projectionMat);
 		shader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
@@ -42,14 +40,6 @@ public class MasterRenderer {
 		
 		shader.unbind();
 
-//		skyboxShader.bind();
-//		
-//		skyboxShader.SetUniform("projection", window.projectionMat);
-//		skyboxShader.SetUniform("view", Matrix.view(camera.position, camera.rotation));
-//		
-//		renderer.renderSkybox(skybox);
-//		
-//		skyboxShader.unbind();
 		gameObjects.clear();
 	}
 	

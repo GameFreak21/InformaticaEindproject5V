@@ -33,6 +33,7 @@ public class Renderer {
 		}
 	}
 	
+	
 	private void prepMesh(Mesh mesh) {
 		GL31.glBindVertexArray(mesh.vertexArrayObject);
 		GL31.glEnableVertexAttribArray(0);
